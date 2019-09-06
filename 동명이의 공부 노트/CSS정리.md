@@ -755,12 +755,191 @@ CSS
 
 - 여러 개의 프로퍼티를 연속해서 지정할 수 있으며 세미콜론으로 구분한다.
 
+- ##### 2.1 width / height 프로퍼티
 
+  - width와 height 프로퍼티는 요소의 너비와 높이를 지정하기 위해 사용된다. 이때 지정되는 요소의 너비와 높이는 콘텐츠 영역을 대상으로 한다.
+
+  - 이는 box-sizing 프로퍼티에 기본값인 content-box가 적용되었기 때문으로 만약 box-sizing 프로퍼티에 border-box를 적용하면 콘텐츠 영역, padding, border가 포함된 영역을 width/height 프로퍼티의 대상으로 지정할 수 있다.
+
+  - 만일 width와 height로 지정한 콘텐츠 영역보다 실제 콘텐츠가 크면 콘텐츠 영역을 넘치게 된다. 이 때 overflow: hidden;을 지정하면 넘친 콘텐츠를 감출 수 있다.
+
+    ```
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <style>
+        div {
+          width: 300px;
+          height: 100px;
+          background-color: cornsilk;
+          border: 5px solid navy;
+        }
+      </style>
+    </head>
+    <body>
+      <div>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+    </body>
+    </html>
+    ```
+
+  - 박스 전체 크기는 다음과 같이 계산해볼 수 있다.
+
+    ```
+    전체 너비
+    width + left padding + right padding + left border + right border + left margin + right margin
+    전체 높이
+    height + top padding + bottom padding + top border + bottom border + top margin + bottom margin
+    ```
+
+    ![img](https://poiemaweb.com/img/box-model-calc.png)
+
+    ```
+    width
+    20+6+20+400+20+6+20=492(px)
+    height
+    20+6+20+100+20+6+20=192(px)
+    ```
+
+  - width와 height 프로퍼티의 초기값은 auto로써 이것은 브라우저가 상황에 따라 적당한 width와 height 값을 계산할 것을 의미한다. 예시로 block 요소의 경우, widthsms qnah dythdml 100%, height는 콘텐츠의 높이(+약간의 여분)가 지정된다.
+
+  - 명시적으로 width와 height를 지정하기 위해서는 px, % 등의 크기 단위를 사용한다.
+
+  - width와 height 프로퍼티를 비롯한 모든 박스모델 관련 프로퍼티(margin, padding, border, box-sizing 등)는 상속(중첩)되지 않는다.
+
+- ##### 2.2 margin/padding 프로퍼티
+
+  - margin / padding 프로퍼티는 content의 4개 방향(top, right, left, bottom)에 대하여 지정이 가능하다.
+
+    ![box model detail](https://poiemaweb.com/img/box-model-detail.png)
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <style>
+          div {
+            border: 5px solid red;
+    
+            margin-top: 40px;
+            margin-right: 30px;
+            margin-bottom: 20px;
+            margin-left: 10px;
+    
+            padding-top: 10px;
+            padding-right: 20px;
+            padding-bottom: 30px;
+            padding-left: 40px;
+          }
+        </style>
+      </head>
+      <body>
+        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+      </body>
+    </html>
+    ```
+
+  - -top, -right, -bottom, -left 4방향의 프로퍼티를 각각 지정하지 않고 margin, padding 1개의 프로퍼티만으로 4방향의 프로퍼티를 한번에 지정할 수 있다. 
+
+    - 4개의 값을 지정하는 경우 : margin: n px n px n px n px; 형식으로 지정되며 top, right, bottom, left 순이다.
+
+    - 3개의 값을 지정하는 경우 : right와 left가 함께 지정되고 top, (right left), bottom 순이다.
+
+    - 2개의 값을 지정하는 경우 : 이번엔 top과 bottom이 함께 지정되며 (top bottom), (right left) 순이다.
+
+    - 1개의 값을 지정하는 경우 : 모두 같은 값으로 지정된다.
+
+      ```
+       margin:  40px 30px 20px 10px;
+      ```
+
+  - margin 프로퍼티에 auto 키워드를 설정하면 해당 요소를 브라우저 중앙에 위치 시킬 수 있다.
+
+    ```css
+    margin: 0 auto;
+    ```
+
+  - ###### max-width, min-width
+
+    - 요소 너비가 브라우저 너비보다 크면 가로 스크롤바가 만들어진다. 이 문제는 max-width 프로퍼티로 해결할 수 있다.
+
+      ```css
+      max-width: 600px;
+      ```
+
+    - max-width 프로퍼티를 사용하면 브라우저 너비가 요소의 너비보다 좁아질 때 자동으로 요소의 너비가 줄어든다.
+
+    - min-width는 요소 너비의 최소값을 지정한다. 브라우저의 너비가 지정한 값보다 작아져도 요소 너비는 지정 너비를 유지한다.
+
+- ##### 2.3 border 프로퍼티
+
+  - ###### 2.3.1 border-style
+
+    - 테두리 선의 스타일을 지정한다.
+
+      ```http
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <style>
+            p {
+              background: palegreen;
+              padding: 10px;
+            }
+            p.dotted { border-style: dotted; }
+            p.dashed { border-style: dashed; }
+            p.solid  { border-style: solid; }
+            p.double { border-style: double; }
+            p.groove { border-style: groove; }
+            p.ridge  { border-style: ridge; }
+            p.inset  { border-style: inset; }
+            p.outset { border-style: outset; }
+            p.none   { border-style: none; }
+            p.hidden { border-style: hidden; }
+            p.mix    { border-style: dotted dashed solid double; }
+          </style>
+        </head>
+        <body>
+          <h2>border-style Property</h2>
+      
+          <p class="dotted">dotted</p>
+          <p class="dashed">dashed</p>
+          <p class="solid">solid</p>
+          <p class="double">double</p>
+          <p class="groove">groove</p>
+          <p class="ridge">ridge</p>
+          <p class="inset">inset</p>
+          <p class="outset">outset</p>
+          <p class="none">none</p>
+          <p class="hidden">hidden</p>
+          <p class="mix">dotted dashed solid double</p>
+        </body>
+      </html>
+      ```
+
+    - 프로퍼티 값의 갯수에 따라 4개 방향에 대하여 지정이 가능하다. 위의 margin 프로퍼티와 방법은 같다.
+
+  - ###### 2.3.2 border-width
+
+    - 테두리의 두께를 지정하는 프로퍼티. 프로퍼티 값의 갯수에 따라 4개 방향에 대하여 지정이 가능하다.
+    - border-width 프로퍼티는 border-style과 함께 사용하지 않으면 적용되지 않는다.
+    - 프로퍼티 값을 직접 지정하는 것 외에도 thin(1px), medium(3px), thick(5px)이 있다.
+
+  - ###### 2.3.3 border-color
+
+    - 테두리의 색상을 지정한다. 프로퍼티 값의 갯수에 따라 4개 방향에 대하여 지정이 가능하다.
+    - border-color 프로퍼티는 border-style과 함께 사용하지 않으면 적용되지 않는다.
+
+  - ###### 2.3.4 border-radius
+
+    - 테두리 모서리를 둥글게 표현하도록 지정한다. 프로퍼티 값은 길이를 나타내는 단위()
 
 
 #### 3. 값(value/속성값)
 
-- **프로퍼티의 값**으로 해당 프로퍼티에 사용할 수 있는 값을 '키워드'나 '크기 단위' 또는 '색상 표현 단위'등의 특정 단위로 지정하여야 한다.
+- **프로퍼티의 값**으로 해당 프로퍼티에 사용할 수 있는 값을 '키워드'나 '크기 단위' 또는 '색상 표현 단위'등의 특정 단위로 지정하여야 한다. 
 
 - ##### 3.1 키워드
 
@@ -938,8 +1117,93 @@ CSS
       ```
 
     - 사용자가 브라우저의 기본 폰트 크기를 변경하더라도 이에 따라 웹사이트의 레이아웃을 적절히 조정할 수 있다는 장점이 있다. 따라서 콘텐츠의 크기에 따라 가변적으로 대응하여야 하는 wrapper 요소(container) 등에 적합하다.
+    
+      ```css
+      .container{
+      	width: 70rem; // 14px * 70 = 980px
+      }
+      ```
+    
+      Reset CSS를 사용하여 사전에 html 요소의 font-size 지정이 필요하다. font-size 미지정 시에는 16px가 적용된다.
+    
+  - ###### 3.2.5 Viewport 단위 (vh, vw, vmin, vmax)
+  
+    - 반응형 웹디자인은 화면의 크기에 동적으로 대응하기 위해 % 단위를 자주 사용한다. 하지만 %와 em 단위는 중첩에 의해 부모 요소에 상대적 영향을 받는다.
+  
+    - Viewpor 단위는 상대적인 단위로 viewport를 기준으로 한 상대적 사이즈를 의미한다.
+  
+      | 단위 |                Description                 |
+      | :--: | :----------------------------------------: |
+      |  vw  |           viewport 너비의 1/100            |
+      |  vh  |           viewport 높이의 1/100            |
+      | vmin | viewport 너비 또는 높이 중 작은 쪽의 1/100 |
+      | vmax |  viewport 너비 또는 높이 중 큰 쪽의 1/100  |
+  
+      ex) viewport 너비가 1000px, 높이가 600px인 경우 : 1vw = 10px, 1vh = 6px, vmin = 6px, vmax = 10px
+  
+    - 단, IE 8 이하는 지웒자ㅣ 않으며 IE 9 ~11, Edge는 지원이 완전하지 않으므로 주의가 필요하다.
+  
+- ##### 3.3 색상 표현 단위
 
-#### 4. HTML과 CSS의 연동
+  - 색상을 지정하기 위해 키워드(red, blue...)를 사용할 수 있다. 사용이 간편하지만 표현할 수 있는 색상의 수는 제한된다.(키워드 리스트는 https://www.w3.org/TR/css3-color/ 참조)
+
+  - 더욱 다양한 색상을 표현하기 위해 다음과 같은 표현 단위들을 사용할 수 있다.(http://htmlcolorcodes.com/ 참조)
+
+    | 단위                                            | 사용 예시               |
+    | ----------------------------------------------- | ----------------------- |
+    | HEX 코드 단위 (Hexadecimal Colors)              | #000000                 |
+    | RGB (Red, Green, Blue)                          | rgb(255, 255, 0)        |
+    | RGBA (Red, Green, Blue, Alpha/투명도)           | rgba(255, 255, 0, 1)    |
+    | HSL (Hue/색상, Saturation/채도, Lightness/명도) | hsl(0, 100%, 25%)       |
+    | HSLA (Hue, Saturation, Lightness, Alpha)        | hsla(60, 100%,, 50%, 1) |
+
+#### 4. 박스 모델
+
+- 모든 HTML 요소는 Box 형태의 영역을 가지고 있다. 이 Box는 콘텐트(Content), 패딩(Padding), 테두리(Border), 마진(Margin)으로 구성된다.![css box model](https://poiemaweb.com/img/box-model.png)
+
+- 브라우저는 박스 모델의 크기(dimension)와 프로퍼티(색, 배경, 모양 등), 위치를 근거로 하여 렌더링을 실행한다.
+
+- 웹디자인은 콘텐츠를 담을 박스 모델을 정의하고 CSS 프로퍼티를 통해 스타일(배경, 폰트와 텍스트 등)과 위치 및 정렬을 지정하는 것이라고 할 수 있다.
+
+- | 명칭    | 설명                                                         |
+  | ------- | ------------------------------------------------------------ |
+  | Content | 요소의 텍스트나 이미지 등의 실제 내용이 위치하는 영역이다. width, height 프로퍼티를 갖는다. |
+  | Padding | 테두리(Border) 안쪽에 위치하는 요소의 내부 여백 영역이다. padding 프로퍼티 값은 패딩 영역의 두께를 의미하며 기본색은 투명이다. 요소에 적용된 배경의 컬러, 이미지는 패딩 영역까지 적용된다. |
+  | Border  | 테두리 영역으로 border 프로퍼티 값은 테두리의 두께를 의미한다. |
+  | Margin  | 테두리(Border) 바깥에 위치하는 요소의 외부 여백 영역이다. margin 프로퍼티 값은 마진 영역의 두께를 의미한다. 기본적으로 투명하며 배경색을 지정할 수 없다. |
+
+  ```html
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <style>
+      div {
+        /* 배경색의 지정: 콘텐츠 영역과 패딩 영역에 적용된다. */
+        background-color: lightgrey;
+        /* 콘텐츠 영역의 너비 */
+        width: 300px;
+        /* 패딩 영역의 두께 */
+        padding: 25px;
+        /* 테두리: 두께 형태 색상 */
+        border: 25px solid navy;
+        /* 마진 영역의 두께 */
+        margin: 25px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Box Model</h2>
+  
+    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+  </body>
+  </html>
+  ```
+
+  
+
+### CSS 사용법(가제)
+
+#### HTML과 CSS의 연동
 
 - HTMl은 CSS를 포함할 수 있다.
 
@@ -1007,7 +1271,7 @@ CSS
       </html>
       ```
 
-#### 5. Reset CSS 사용하기
+#### Reset CSS 사용하기
 
 - 모든 웹 브라우저는 디폴트 스타일(브라우저가 내장하고 있는 기본 스타일)을 가지고 있어 CSS가 없이도 작동한다.
 - 허나 웹브라우저에 따라 디폴트 스타일이 상이하고 지원하는 tag나 style도 제각각이어서 주의가 필요하다.
