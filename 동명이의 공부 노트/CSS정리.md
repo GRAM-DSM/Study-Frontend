@@ -934,7 +934,1357 @@ CSS
 
   - ###### 2.3.4 border-radius
 
-    - 테두리 모서리를 둥글게 표현하도록 지정한다. 프로퍼티 값은 길이를 나타내는 단위()
+    - 테두리 모서리를 둥글게 표현하도록 지정한다. 프로퍼티 값은 길이를 나타내는 단위(px, em 등)와 %를 사용한다. 각각의 모서리에 border-radius 프로퍼티를 개별적으로 지정할 수도 있고 4개의 모서리를 short-hand로 한번에 지정할 수도 있다.![border-radius](https://poiemaweb.com/img/border-radius.jpg)
+
+    - 하나 혹은 두 개의 반지름을 설정하여 각각의 모서리 굴곡을 설정할 수 있기 때문에 원 혹은 타원의 모양으로 정의가 가능하다.![border-radius](https://poiemaweb.com/img/border-radius-sh.png)
+
+      ```html
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <style>
+            div {
+              background: #eaeaed;
+              color: #666;
+              display: inline-block;
+              width: 90px;
+              height: 90px;
+              line-height: 90px;
+              margin: 0 14px;
+              text-align: center;
+            }
+      
+            .border-rounded {
+              /* 4 꼭지점에 대해 Radius 지정 */
+              border-radius: 5px;
+            }
+            .border-circle {
+              border-radius: 50%;
+            }
+            .border-football {
+              /* top-left & bottom-right | top-right & bottom-left */
+              border-radius: 15px 75px;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="border-rounded">5px</div>
+          <div class="border-circle">50%</div>
+          <div class="border-football">15px 75px</div>
+        </body>
+      </html>
+      ```
+
+    - 값이 적용되는 순서는 top-left, top-right, bottom-right, bottom-left이다.
+
+    - **두 개의 반지름을 지정하여 타원형 둥근 모서리 설정**![img](https://poiemaweb.com/img/IC485217.png)
+
+      ```css
+      .border-rounded {
+        border-top-left-radius: 50px 25px;
+      }
+      ```
+
+    - **각각의 모서리에 타원형 둥근 모서리 축약 설정**![img](https://poiemaweb.com/img/IC485220.png)
+
+  - ###### 2.3.5 border
+
+    - border-width, border-style, border-color을 한 번에 설정할 수 있는 short-hand 프로퍼티이다.
+
+      ```css
+      p {
+        /* border-width border-style border-color */
+        border: 5px solid red;
+      }
+      ```
+
+- ##### 2.4 box-sizing  프로퍼티
+
+  - width, height 프로퍼티의 대상 영역을 변경하는 프로퍼티이다.
+
+    | 키워드      | 설명                                                         |
+    | ----------- | ------------------------------------------------------------ |
+    | content-box | width, height 프로퍼티 값은 content 영역을 의미한다.(기본값) |
+    | border-box  | width, height 프로퍼티 값은 content 영역, padding, border가 포함된 값을 의미한다. |
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <style>
+          .content-box {
+            width: 600px;
+            border: 10px solid;
+            padding: 50px;
+            margin: 50px;
+            background-color: red;
+          }
+          .border-box {
+            box-sizing: border-box;
+            width: 600px;
+            border: 10px solid;
+            padding: 50px;
+            margin: 50px;
+            background-color: red;
+          }
+        </style>
+      </head>
+      <body>
+      <div class="content-box">content-box</div>
+      <div class="border-box">border-box</div>
+    </body>
+    </html>
+    ```
+
+- ##### 2.5 display 프로퍼티
+
+  - 레이아웃 정의에 사용되는 프로퍼티이다.
+
+    | 프로퍼티값 키워드 | 설명                                   |
+    | ----------------- | -------------------------------------- |
+    | block             | block 특성을 가지는 요소로 지정        |
+    | inline            | inline 특성을 가지는 요소로 지정       |
+    | inline-block      | inline-block 특성을 가지는 요소로 지정 |
+    | none              | 해당 요소를 화면에 표시하지 않는다.    |
+
+  - ###### 2.5.1 block 레벨 요소
+
+    - block 특성을 가지는 요소
+
+      - 항상 새로운 라인에서 시작한다.
+      - 화면 전체 크기의 가로폭을 차지한다.
+      - width, height, margin, padding 프로퍼티 지정이 가능하다.
+      - block 레벨 요소 내에 inline 레벨 요소를 포함할 수 있다.
+
+    - ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          div:nth-of-type(1) {
+            background-color: #FFA07A;
+            padding: 20px;
+          }
+          div:nth-of-type(2) {
+            background-color: #FF7F50;
+            padding: 20px;
+            width: 300px;
+          }
+        </style>
+      </head>
+      <body>
+        <div>
+          <h2>블록 레벨 요소</h2>
+          <p>width, height 미지정 → width: 100%; height: auto;</p>
+        </div>
+        <div>
+          <h2>블록 레벨 요소</h2>
+          <p>width: 300px → width: 300px; height: auto;</p>
+        </div>
+      </body>
+      </html>
+      ```
+
+  - ###### 2.5.2 inline 레벨 요소
+
+    - inline 특성을 가지는 요소
+
+      - 새로운 라인에서 시작하지 않으며 문장의 중간에 들어갈 수 있다.
+      - content의 너비만큼 가로폭을 차지한다.
+      - width, height, margin-top, margin-bottom 프로퍼티를 지정할 수 없다. 상, 하 여백은 line-height로 지정한다.
+      - inline 레벨 요소는 block 레벨 요소에 포함될 수 있지만 반대는 불가능하다.
+
+    - ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          span {
+            background-color: red;
+            color: white;
+            padding: 10px;
+            /* width, height, margin-top, margin-bottom 프로퍼티를 지정할 수 없다. */
+            /* width: 200px; */
+            /* margin: 10px; */
+            /* 상, 하 여백은 line-height로 지정한다. */
+            /* line-height: 50px; */
+          }
+        </style>
+      </head>
+      <body>
+        <h1>My <span>Important</span> Heading</h1>
+        <span>Inline</span>
+        <span>Inline</span><span>Inline</span>
+      </body>
+      </html>
+      ```
+
+      
+
+  - ###### 2.5.3 inline-block 레벨 요소
+
+    - inline 레벨 요소처럼 한 줄에 표현되면서 width, height, margin 프로퍼티를 모두 지정할 수 있다.
+    
+      - 줄을 바꾸지 않고 다른 요소와 함께 한 행에 위치시킬 수 있다.
+    
+      - block 레벨 요소처럼 width, height, margin, padding 프로퍼티를 모두 정의할 수 있다. 상, 하 여백을 margin과 line-heing 두 가지 프로퍼티 모두를 통해 제어할 수 있다.
+    
+      - content의 너비만큼 가로폭을 차지한다.
+    
+        ```html
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+            .wrapper {
+              font-size: 0; /*요소간 간격을 제거*/
+            }
+            .inline-block {
+              display: inline-block;
+              vertical-align: middle; /* inline-block 요소 수직 정렬 */
+              border: 3px solid #73AD21;
+              font-size: 16px;
+            }
+            .box1 {
+              width: 300px;
+              height: 70px;
+            }
+            .box2 {
+              width: 300px;
+              height: 150px;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="inline-block box1">inline-block height 70px</div>
+          <div class="inline-block box2">inline-block height 150px</div>
+        
+          <div class="wrapper">
+            <div class="inline-block box1">inline-block height 70px</div>
+            <div class="inline-block box2">inline-block height 150px</div>
+          </div>
+        </body>
+        </html>
+        ```
+  
+- ##### 2.6 visivility 프로퍼티
+
+  - | 프로퍼티값 키워드 | 설명                                                         |
+    | ----------------- | ------------------------------------------------------------ |
+    | visible           | 해당 요소를 보이게 한다(기본값)                              |
+    | hidden            | 해당 요소를 보이지 않게 한다. display: none은 해당 요소의 공간까지 사라지게 하지만 wisibility: hidden;은 해당 요소의 공간은 사라지지 않는다. |
+    | collapse          | table 요소에 사용하며 행이나 열을 보이지 않게 한다.          |
+    | none              | table 요소의 row나 column을 보이지 않게 한다.                |
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        .visible { visibility: visible; }
+        .hidden  { visibility: hidden; }
+    
+        table, td { border: 1px solid black; }
+        .collapse { visibility: collapse; }
+        /* .collapse { visibility: hidden; } */
+      </style>
+    </head>
+    <body>
+      <h1 class="visible">visibility: visible</h1>
+      <h1 class="hidden">visibility: hidden</h1>
+      <h1 style="display:none">display:none</h1>
+    
+      <table>
+        <tr>
+          <td>A</td>
+          <td>B</td>
+        </tr>
+        <tr class="collapse">
+          <td>C</td>
+          <td>D</td>
+        </tr>
+      </table>
+    </body>
+    </html>
+    ```
+
+- ##### 2.7 opacity 프로퍼티
+
+  - 투명도를 정의한다. 0.0(투명)~1.0(불투명)까지의 값이 있다.
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        div, img {
+          float: left;
+          width: 150px;
+          height: 150px;
+          margin: 30px;
+          background-color: blue;
+          color: white;
+          opacity: 0.5;
+          transition: opacity 1s;
+        }
+        div:hover, img:hover {
+          opacity: 1.0;
+        }
+      </style>
+    </head>
+    <body>
+      <div>opacity: 0.5</div>
+      <img src="https://poiemaweb.com/img/doug.jpg" alt="doug">
+    </body>
+    ```
+
+- ##### 2.8 background-image 프로퍼티
+
+  - 요소에 배경 이미지를 지정한다.
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        body {
+          background-image: url("http://poiemaweb.com/img/bg/dot.png");
+        }
+      </style>
+    </head>
+    <body>
+      <h3>Background Image</h3>
+    </body>
+    </html>
+    ```
+
+- ##### 2.9 background-repeat 프로퍼티
+
+  - 배경 이미지의 반복을 지정한다. x축으로만 배경 이미지를 반복할 경우 프로퍼티 값으로 repeat-x, y축으로만 배경이미지를 반복할 경우 repeat-y를 설정한다.
+
+  - ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        body {
+          background-image: url("http://poiemaweb.com/img/bg/dot.png");
+          background-repeat: repeat-x;
+        }
+      </style>
+    </head>
+    <body>
+      <h3>background-repeat: repeat-x;</h3>
+    </body>
+    </html>
+    ```
+
+  - 반복 출력을 원하지 않는 경우 no-repeat을 프로퍼티 값으로 설정하면 된다.
+
+- ##### 2.10 background-size 프로퍼티
+
+  - 배경 이미지의 사이즈를 지정한다. 단 배경 이미지의 고유 비율을 유지한다. 프로퍼티 값으로 px, %, cover, contain 등을 사용한다.
+    - **cover 지정** : 배경 이미지의 크기 비율을 유지한 상태에서 부모 요소의 width, height 중 큰 값에 배경 이미지를 맞춘다.
+    - **contain 지정** : 배경 이미지의 크기 비율을 유지한 상태에서 부모 요소의 영역에 배경 이비지가 보이지 않는 부분 없이 전체가 들어갈 수 있도록 크기를 조정한다.
+  - 두 개의 값을 지정했을 경우 첫번째 값은 width, 두번째 값은 height를 의미하며 하나의 값일 경우 지정한 값은 width를 의미하게 되며 height는 auto로 지정된다.
+  - 다수의 배경 이미지의 크기를 조정할 땐 쉼표를 사용한다.
+
+- ##### 2.11 background-attachment 프로퍼티
+
+  - 화면이 스크롤될 때 배경이미지는 스크롤 되지 않고 고정되어 있게 하는 프로퍼티
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        *, *:after, *:before {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+    
+        html, body {
+          width:100%;
+          height:100%;
+        }
+    
+        .bg-wrap {
+          /* page-wrap 보다 bg-wrap이 작은 경우, page-wrap이 가리는 문제를 해결 */
+          min-height: 600px;
+          height: 100%;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          /* 마진 상쇄 문제 해결을 위한 코드
+            https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing
+          */
+          overflow: auto;
+          /* or padding: 0.1px; */
+        }
+    
+        .parallax {
+          background-image: url("http://poiemaweb.com/img/bg/stock-photo-125979219.jpg");
+          /* parallax scrolling effect */
+          background-attachment: fixed;
+        }
+    
+        .normal {
+          background-image: url("http://poiemaweb.com/img/bg/stock-photo-155153867.jpg");
+        }
+    
+        #page-wrap {
+          width: 400px;
+          /* 마진 상쇄 발생 */
+          margin: 50px auto;
+          padding: 30px;
+          background: white;
+          box-shadow: 0 0 20px black;
+          /* size/line-height | family */
+          font: 15px/2 Georgia, Serif;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="bg-wrap parallax">
+        <div id="page-wrap">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid ipsum maxime libero, impedit necessitatibus quas blanditiis tenetur vero aut esse unde ab similique, delectus placeat enim quae expedita excepturi laboriosam.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid ipsum maxime libero, impedit necessitatibus quas blanditiis tenetur vero aut esse unde ab similique, delectus placeat enim quae expedita excepturi laboriosam.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid ipsum maxime libero, impedit necessitatibus quas blanditiis tenetur vero aut esse unde ab similique, delectus placeat enim quae expedita excepturi laboriosam.</p>
+        </div>
+      </div>
+      <div class="bg-wrap normal"></div>
+    </body>
+    </html>
+    ```
+
+- ##### 2.12 background-position 프로퍼티
+
+  - 배경이미지의 좌표를 지정하는 프로퍼티. 기본 값은 background-position: 0% 0%;이다.
+
+  - ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        body {
+          margin: 0;
+        }
+        div {
+          background-image: url("http://poiemaweb.com/img/bg/dot.png");
+          background-color: #FFEE99;
+          background-repeat: no-repeat;
+          width: 32vw;
+          height: 200px;
+          margin-bottom: 2vw;
+          float: left;
+        }
+        div:not(:nth-of-type(3n+1)) {
+          margin-left: 2vw;
+        }
+        .example1 {
+          background-position: top;
+        }
+        .example2 {
+          background-position: bottom;
+        }
+        .example3 {
+          background-position: center;
+        }
+        .example4 {
+          background-position: left;
+        }
+        .example5 {
+          background-position: right;
+        }
+        .example6 {
+          /* <percentage> values */
+          background-position: 25% 75%;
+        }
+        .example7 {
+          /*
+            <length> values
+            xpos ypos
+          */
+          background-position: 10px 20px;
+        }
+        .example8 {
+          background-image: url("http://poiemaweb.com/img/bg/dot.png"), url("http://poiemaweb.com/img/bg/dot.png");
+          background-position: 0px 0px, center;
+        }
+      </style>
+    </head>
+    
+    <body>
+      <div>default(0% 0%)</div>
+      <div class="example1">top</div>
+      <div class="example2">bottom</div>
+      <div class="example3">center</div>
+      <div class="example4">left</div>
+      <div class="example5">right</div>
+      <div class="example6">25% 75%</div>
+      <div class="example7">10px 20px</div>
+      <div class="example8">0px 0px, center</div>
+    </body>
+    </html>
+    ```
+
+- ##### 2.13 background-color 프로퍼티
+
+  - 요소의 배경 색상을 지정한다. 색상값 또는 transparent 키워드를 지정할 수 있다.
+
+- ##### 2.14 background Shorthand
+
+  - 백그라운드의 color, image, repeat, position을 한 번에 정의한다.
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        div {
+          /* background: color || image || repeat || attachment || position */
+          background: #FFEE99 url("http://poiemaweb.com/img/bg/dot.png") no-repeat center;
+          width: 50vw;
+          height: 300px;
+        }
+      </style>
+    </head>
+    <body>
+      <div></div>
+    </body>
+    </html>
+    ```
+
+- ##### 2.15 font-size 프로퍼티
+
+  - 텍스트의 크기를 정의한다.
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        .font-size-40 { font-size: 40px; }
+        .font-size-2x { font-size: 2.0em; }
+        .font-size-150ps { font-size: 150%; }
+        .font-size-large { font-size: large; }
+      </style>
+    </head>
+    <body>
+      <p>default font size: 16px</p>
+      <p class='font-size-40'>font-size: 40px</p>
+      <p class='font-size-2x'>font-size: 2.0em</p>
+      <p class='font-size-150ps'>font-size: 150%</p>
+      <p class='font-size-large'>font-size: large</p>
+    </body>
+    </html>
+    ```
+
+- ##### 2.16 font-family 프로퍼티
+
+  - 폰트를 지정한다. 여러 폰트를 동시에 적용할 수 있다.
+
+  - 폰트명은 따옴표로 감싸주며 폰트명이 한 단어인 경우는 따옴표로 감싸주지 않아도 된다.
+
+  - ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        .serif {
+          font-family: "Times New Roman", Times, serif;
+        }
+    
+        .sans-serif {
+          font-family: Arial, Helvetica, sans-serif;
+        }
+    
+        .monospace {
+          font-family: "Courier New", Courier, monospace;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>font-family</h1>
+      <p class="serif">Times New Roman font.</p>
+      <p class="sans-serif">Arial font.</p>
+      <p class="monospace">Courier New font.</p>
+    </body>
+    </html>
+    ```
+
+- ##### 2.17 font-style / font-weight 프로퍼티
+
+  - font-style은 이탤릭체, font-weight는 폰트 굵기 지정에 사용된다.
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        p { font-size: 2.0em; }
+    
+        /*
+          font-style
+          normal / italic / oblique
+        */
+        .italic {
+          font-style: italic;
+        }
+    
+        /*
+          font-weight
+          100 ~ 900 or normal / bold / lighter / bolder
+        */
+        .light {
+          font-weight: lighter;
+        }
+        .thick {
+          font-weight: bold;
+        }
+        .thicker {
+          font-weight: 900;
+        }
+      </style>
+    </head>
+    <body>
+      <p>normal style.</p>
+      <p class="italic">font-style: italic</p>
+    
+      <p class="light">font-weight: lighter</p>
+      <p class="thick">font-weight: bold</p>
+      <p class="thicker">font-weight: 900</p>
+    </body>
+    </html>
+    ```
+
+- ##### 2.18 font Shorthand
+
+  - 아래의 순서로 적용된다.
+
+  - ```css
+    font : font-style(optional) font-variant(optional) font-weight(optional) font-size(mandatory) line-height(optional) font-family(mandatory)
+    ```
+
+    ```css
+    /* size | family */
+    font: 2em "Open Sans", serif;
+    
+    /* style | size | family */
+    font: italic 2em "Open Sans", sans-serif;
+    
+    /* style | variant | weight | size/line-height | family */
+    font: italic small-caps bolder 16px/1.2 monospace;
+    
+    /* style | variant | weight | size/line-height | family */
+    /* font-variant: small-caps; 소문자를 대문자로 만든다. 단 크기는 일반 대문자에 비해 더 작다.*/
+    font: italic small-caps bolder 16px/3 cursive;
+    ```
+
+- ##### 2.19 line-height 프로퍼티
+
+  - 텍스트의 높이를 지정한다.
+  
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        .small {
+          line-height: 70%; /* 16px * 70% */
+        }
+        .big {
+          line-height: 1.2; /* 16px * 1.2 */
+        }
+        .lh-3x {
+          line-height: 3.0; /* 16px * 3 */
+        }
+    
+      </style>
+    </head>
+    <body>
+      <p>
+        default line-height.<br>
+        default line-height.<br>
+        대부분 브라우저의 default line height는 약 110% ~ 120%.<br>
+      </p>
+    
+      <p class="small">
+        line-height: 70%<br>
+        line-height: 70%<br>
+      </p>
+    
+      <p class="big">
+        line-height: 1.2<br>
+        line-height: 1.2<br>
+      </p>
+    
+      <p class="lh-3x">
+        line-height: 3.0<br>
+        line-height: 3.0<br>
+      </p>
+    </body>
+    </html>
+    ```
+  
+  - 이를 이용해 수직 중앙 정렬을 할 수도 있다.
+  
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        .button {
+          width: 150px;
+          height: 70px;
+          background-color: #FF6A00;
+          border-radius: 30px;
+          box-shadow: 5px 5px 5px #A9A9A9;
+        }
+        .button > a {
+          display: block;
+          font: italic bold 2em/70px Arial, Helvetica, sans-serif;
+          text-decoration: none;
+          text-align: center;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="button">
+        <a href="#">Click</a>
+      </div>
+    </body>
+    </html>
+    ```
+  
+- ##### 2.20 letter-spacing 프로퍼티
+
+  - 글자 사이의 간격을 지정한다.
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        .loose {
+          letter-spacing: 2px;
+        }
+        .tight {
+          letter-spacing: -1px;
+        }
+      </style>
+    </head>
+    <body>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+    
+      <p class="loose">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+    
+      <p class="tight">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+    </body>
+    </html>
+    ```
+
+- ##### 2.21 text-align 프로퍼티
+
+  - 텍스트의 수평 정렬을 정의한다.
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        h1 { text-align: center; }
+        h3 { text-align: right; }
+        p.left  { text-align: left; }
+        p.justify  { text-align: justify; }
+        a  { text-align: center; }
+      </style>
+    </head>
+    <body>
+      <h1>Lorem ipsum</h1>
+      <h3>2016.03.07</h3>
+    
+      <p class="left">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    
+      <p class="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    
+      <a href='#'>Reference</a>
+    </body>
+    </html>
+    ```
+
+  - a 요소는 inline 요소이기 때문에 width프로퍼티가 없어 중앙 정렬이 적용되지 않는다. 
+
+- ##### 2.22 text-decoration 프로퍼티
+
+  - 글자에 줄을 첨가 또는 삭제하는 프로퍼티이다.
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        a { text-decoration: none; }
+    
+        p:nth-of-type(1) { text-decoration: overline; }
+        p:nth-of-type(2) { text-decoration: line-through; }
+        p:nth-of-type(3) { text-decoration: underline; }
+      </style>
+    </head>
+    <body>
+      <a href='#'>text-decoration: none</a>
+    
+      <p>text-decoration: overline</p>
+      <p>text-decoration: line-through</p>
+      <p>text-decoration: underline</p>
+    </body>
+    </html>
+    ```
+
+- ##### 2.23 white-space 프로퍼티
+
+  - html이 연속된 공백, 들여쓰기, 줄바꿈 등을 1번만 실행하거나 무시하고 텍스트는 자동 줄바꿈하는 등 기본적인 동작이 있기 때문에 이를 제어하기 위해 white-space 프로퍼티를 사용한다.
+
+  - | 프로퍼티값 | line break |  space/tab  | wrapping(자동 줄바꿈) |
+    | :--------: | :--------: | :---------: | :-------------------: |
+    |   normal   |    무시    | 1번만 반영  |           O           |
+    |   nowrap   |    무시    | 1번만 반영  |           X           |
+    |    pre     |    반영    | 그대로 반영 |           X           |
+    |  pre-wrap  |    반영    | 그대로 반영 |           O           |
+    |  pre-line  |    반영    | 1번만 반영  |           O           |
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        div {
+          width: 150px;
+          height: 150px;
+          padding: 10px;
+          margin: 40px;
+          border-radius: 6px;
+          border-color: gray;
+          border-style: dotted;
+          /*overflow: hidden;*/
+        }
+        .normal { white-space: normal; }
+        .nowrap { white-space: nowrap; }
+        .pre    { white-space: pre; }
+        .pre-wrap { white-space: pre-wrap; }
+        .pre-line { white-space: pre-line; }
+      </style>
+    </head>
+    <body>
+      <h1>white-space</h1>
+      <div class="normal"><h3>normal</h3>Lorem   ipsum
+    
+        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+      <div class="nowrap"><h3>nowrap</h3>Lorem   ipsum
+    
+        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+      <div class="pre"><h3>pre</h3>Lorem   ipsum
+    
+          dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+      <div class="pre-wrap"><h3>pre-wrap</h3>Lorem   ipsum
+    
+        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+      <div class="pre-line"><h3>pre-line</h3>Lorem   ipsum
+    
+        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+    </body>
+    </html>
+    ```
+
+  - 아래는 float 대신 inline-block을 사용한 가로 정렬 예제이다.
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Infinite looping Crousel Slider</title>
+      <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
+    
+        body {
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          color: #58666e;
+          background-color: #f0f3f4;
+        }
+    
+        .carousel-view {
+          /* 자식 컨텐츠 너비에 fit */
+          display: inline-block;
+          position: relative;
+          margin: 0 auto;
+          border: 1px dotted red;
+        }
+    
+        .carousel-container {
+          /* 자식 컨텐츠의 줄바꿈을 무시하여 1줄로 가로 정렬한다. */
+          white-space: nowrap;
+          /* inline-block 레벨 요소 뒤에 공백(엔터, 스페이스 등)이 있는 경우,
+             정의하지 않은 space(4px)가 자동 지정된다. 이것을 회피하는 방법이다. */
+          font-size: 0;
+          margin: 0;
+          padding: 0;
+        }
+    
+        .carousel-item {
+          display: inline-block;
+          list-style: none;
+          padding: 5px;
+        }
+    
+        .carousel-item:last-child {
+          margin-right: 0;
+        }
+    
+        .carousel-control {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 2em;
+          color: #fff;
+          background-color: transparent;
+          border-color: transparent;
+          cursor: pointer;
+          z-index: 99;
+        }
+    
+        .carousel-control:focus {
+          outline: none;
+        }
+    
+        .carousel-control.prev {
+          left: 0;
+        }
+    
+        .carousel-control.next {
+          right: 0;
+        }
+      </style>
+    </head>
+    <body>
+      <div id="carousel" class="carousel-view">
+        <button class="carousel-control prev">&laquo;</button>
+        <ul class="carousel-container">
+          <li class="carousel-item">
+            <a href="#">
+              <img src="http://via.placeholder.com/400x150/3498db/fff&text=1">
+            </a>
+          </li>
+          <li class="carousel-item">
+            <a href="#">
+              <img src="http://via.placeholder.com/400x150/3498db/fff&text=2">
+            </a>
+          </li>
+          <li class="carousel-item">
+            <a href="#">
+              <img src="http://via.placeholder.com/400x150/3498db/fff&text=3">
+            </a>
+          </li>
+        </ul>
+        <button class="carousel-control next">&raquo;</button>
+      </div>
+    </body>
+    </html>
+    ```
+
+- ##### 2.24 text-oxerflow 프로퍼티
+
+  - 부모 영역을 벗어난 wrapping(자동 줄바꿈)이 되지 않은 텍스트의 처리 방법을 정의한다.
+
+  - 이 프로퍼티를 사용하기 위해서는 아래의 조건이 필요하다.
+
+    - width 프로퍼티가 지정되어 있어야 한다.(inline 레벨 요소 -> block 레벨 요소로 변환)
+
+    - 자동 줄바꿈을 방지하려면 white-space 프로퍼티를 nowrap으로 설정한다.
+
+    - overflow 프로퍼티에 반드시 "visivle" 이외의 값이 지정되어 있어야 한다.
+
+    - ```css
+      /* 부모 영역을 벗어난 텍스트를 잘라내어 보이지 않게 하고 말줄임표(...)를 표시한다. */
+      .truncate {
+        width: 150px;             /* width가 지정되어 있어야 한다. */
+        white-space: nowrap;      /* 자동 줄바꿈을 방지 */
+        overflow: hidden;         /* 반드시 "visible" 이외의 값이 지정되어 있어야 한다. */
+        text-overflow: ellipsis;  /* ellipsis or clip */
+      }
+      ```
+
+  - | 프로퍼티값 | Description                                                  |                                                              |
+    | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+    | clip       | 영역을 벗어난 텍스트를 표시하지 않는다.(기본값)              |                                                              |
+    | ellipsis   | 영역을 벗어난 텍스트를 잘라내어 보이지 않게 하고 말줄임표(...)를 표시한다. |                                                              |
+    | <!-        | < string >                                                   | 프로퍼티 값으로 지정한 임의의 문자열을 출력한다. Firefox(9.0~)만 지원하는 기능이다. -> |
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <style>
+        div {
+          width: 150px; /* width가 지정되어 있어야 한다. */
+          height: 150px;
+          padding: 10px;
+          margin: 40px;
+          border-radius: 6px;
+          border-color: gray;
+          border-style: dotted;
+          white-space: nowrap; /* 자동 줄바꿈을 방지 */
+          overflow: hidden;    /* 반드시 "visible" 이외의 값이 지정되어 있어야 한다. */
+        }
+        .clip     { text-overflow: clip; }
+        .ellipsis { text-overflow: ellipsis; }
+      </style>
+    </head>
+    <body>
+      <h1>text-overflow</h1>
+      <div class="clip">
+        <h3>clip</h3>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit
+      </div>
+      <div class="ellipsis">
+        <h3>ellipsis</h3>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit
+      </div>
+    </body>
+    </html>
+    ```
+
+- ##### 2.25 word-wrap 프로퍼티
+
+  - 한 단어의 길이가 길어서 부모 영역을 벗어난 텍스트의 처리 방법을 정의한다.
+
+  - ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <style>
+        div {
+          width: 150px;
+          height: 150px;
+          padding: 10px;
+          margin: 40px;
+          border-radius: 6px;
+          border-color: gray;
+          border-style: dotted;
+        }
+        .word-wrap { word-wrap: break-word; }
+      </style>
+    </head>
+    <body>
+      <h1>word-wrap</h1>
+      <div>
+        Floccinaucinihilipilification https://poiemaweb.com/css3-font-text
+      </div>
+      <div class="word-wrap">
+        Floccinaucinihilipilification https://poiemaweb.com/css3-font-text
+      </div>
+    </body>
+    </html>
+    ```
+
+- ##### 2.26 word-break 프로퍼티
+
+  - word-wrap과 기능이 같지만 word-wrap은 .,- 등을 고려하여 개행하지만 word-break: break-all;은 단어를 고려하지 않고 부모 영역에 맞추어 강제 개행한다.
+
+  - ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <style>
+        div {
+          width: 150px;
+          height: 150px;
+          padding: 10px;
+          margin: 40px;
+          border-radius: 6px;
+          border-color: gray;
+          border-style: dotted;
+        }
+        .word-wrap  { word-wrap: break-word; }
+        .word-break { word-break: break-all; }
+      </style>
+    </head>
+    <body>
+      <div>
+        Floccinaucinihilipilification https://poiemaweb.com/css3-font-text
+      </div>
+    
+      <h1>word-wrap</h1>
+      <div class="word-wrap">
+        Floccinaucinihilipilification https://poiemaweb.com/css3-font-text
+      </div>
+    
+      <h1>word-break</h1>
+      <div class="word-break">
+        Floccinaucinihilipilification https://poiemaweb.com/css3-font-text
+      </div>
+    </body>
+    </html>
+    ```
+
+- ##### 2.27 position 프로퍼티
+
+  - 요소의 위치를 정의한다. top, bottom, left, right 프로퍼티와 함께 사용한다.![position](https://poiemaweb.com/img/position.png)
+
+  - ###### 2.27.1 static (기본위치)
+
+    - position 프로퍼티의 기본값이다.
+
+    - ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          body { margin: 0; }
+          .parent {
+            width: 150px;
+            height: 150px;
+            background: #bcbcbc;
+            border: 1px solid #bcbcbc;
+          }
+          .static-box {
+            position: static;
+            background: #2E303D;
+            color: #e55c3c;
+            font-weight: bold;
+            text-align: center;
+            line-height: 150px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="parent">
+          <div class="static-box">static box</div>
+        </div>
+      </body>
+      </html>
+      ```
+
+  - ###### 2.27.2 relative (상대위치)
+
+    - 기본 위치를 기준으로 좌표 프로퍼티를 사용하여 위치를 이동시킨다.
+
+    - ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          body { margin: 0; }
+          .parent {
+            width: 150px;
+            height: 150px;
+            background: #bcbcbc;
+            border: 1px solid #bcbcbc;
+            margin: 50px;
+          }
+          .relative-box {
+            position: relative;
+            top: 50px; left: 50px;
+            background: #2E303D;
+            color: #e55c3c;
+            font-weight: bold;
+            text-align: center;
+            line-height: 150px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="parent">
+          <div class="relative-box">relative box</div>
+        </div>
+      </body>
+      </html>
+      ```
+
+  - ###### 2.27.3 absolute (절대위치)
+
+    - 부모 요소나 가장 가까이 있는 조상 요소를 기준으로 좌표 프로퍼티만큼 이동한다.
+
+    - 만일 부모 또는 조상 요소가 static인 경우, document body를 기준으로 하여 좌표 프로퍼티대로 위치하게 된다.
+
+    - 부모 요소를 배치의 기준으로 삼기 위해서는 부모 요소에 relative를 정의하여야 한다.
+
+    - ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          body { margin: 0; }
+          .parent {
+            width: 200px;
+            height: 200px;
+            background: #bcbcbc;
+            border: 1px solid #bcbcbc;
+            margin: 50px 0 0 300px;
+            position: relative;
+          }
+          .absolute-box {
+            position: absolute;
+            height: 200px; width: 200px;
+            top: 50px; left: 50px;
+            color: #e55c3c;
+            font-weight: bold;
+            text-align: center;
+            background: #2E303D;
+            line-height: 200px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="parent">
+          <div class="absolute-box">absolute box (in parent)</div>
+        </div>
+        <div class="absolute-box">absolute box (no parent)</div></body>
+      </html>
+      ```
+
+    - relative와의 차이점은 relative는 무조건 부모를 기준으로 위치하게 되지만 absolute 프로퍼티는 부모 요소의 영역을 벗어나 자유롭게 어디든지 위치할 수 있다는 점이다.
+
+  - ###### 2.27.4 fixed (고정위치)
+
+    - 브라우저의 viewport를 기준으로 좌표프로퍼티를 사용하여 위치를 이동시킨다.
+
+    - 화면의 크기나 비율이 변해도 항상 같은 위치에 자리잡고 있다.
+
+    - ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          body { margin: 0; }
+          .fixed-box {
+            position: fixed;
+            color: #e55c3c;
+            font-weight: bold;
+            text-align: center;
+            background: #2E303D;
+          }
+          .sidebar {
+            width: 50px;
+            height: 100%;
+            top: 0;
+            right: 0;
+            padding-top: 100px;
+          }
+          .footer {
+            width: 200px;
+            width: 100%;
+            height: 50px;
+            bottom: 0;
+            left: 0;
+            line-height: 50px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="fixed-box sidebar">fixed box (side-bar)</div>
+        <div class="fixed-box footer">fixed box (footer)</div>
+      </body>
+      </html>
+      ```
+
+- ##### 2.28 z-index 프로퍼티
+
+  - 프로퍼티값에 큰 숫자값을 지정할수록 화면 전면에 출력된다.
+
+  - ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        .normal-box {
+          width: 100px; height: 100px;
+        }
+        .absolute-box {
+          width: 100px; height: 100px;
+          position: absolute;
+        }
+        /* z-index는 positon 프로퍼티가 static 이외인 요소에만 적용된다. */
+        .orange {
+          background-color: orange;
+          z-index: 1000;
+        }
+        .red {
+          background-color: red;
+          left: 50px; top: 50px;
+          z-index: 100;
+        }
+        .green {
+          background-color: green;
+          left: 100px; top: 100px;
+          z-index: 10;
+        }
+        .blue {
+          background-color: blue;
+          left: 150px; top: 150px;
+          z-index: 1;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="normal-box orange"></div>
+      <div class="absolute-box red"></div>
+      <div class="absolute-box green"></div>
+      <div class="absolute-box blue"></div>
+    </body>
+    </html>
+    ```
+
+- ##### 2.29 overflow 프로퍼티
+
+  - 자식 요소가 부모 요소의 영역을 벗어났을 때 처리 방법을 정의한다.
+
+  - | 프로퍼티값 | Description                                      |
+    | ---------- | ------------------------------------------------ |
+    | visible    | 영역을 벗어난 부분을 표시한다.(기본값)           |
+    | hidden     | 영역을 벗어난 부분을 잘라내어 보이지 않게 한다.  |
+    | scroll     | 영역을 벗어난 부분이 없어도 스크롤로 표시한다.   |
+    | auto       | 영역을 벗어난 부분이 있을때만 스크롤로 표시한다. |
+
+  - ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        div {
+          width: 150px;
+          height: 150px;
+          padding: 10px;
+          margin: 30px;
+          font-size: 1.2em;
+          border-radius: 6px;
+          border-color: gray;
+          border-style: dotted;
+          float: left;
+        }
+        .visible { overflow: visible; }
+        .hidden  { overflow: hidden; }
+        .scroll  { overflow: scroll; }
+        .auto    { overflow: auto; }
+      </style>
+    </head>
+    <body>
+      <h1>overflow</h1>
+      <div class="visible"><h3>visible</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+      <div class="hidden"><h3>hidden</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+      <div class="scroll"><h3>scroll</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+      <div class="auto"><h3>auto</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+    </body>
+    </html>
+    ```
+
+  - 특정 방향으로만 스크롤을 표시하고자 할 때는 overflow-x나 y를 사용한다.
 
 
 #### 3. 값(value/속성값)
@@ -943,7 +2293,7 @@ CSS
 
 - ##### 3.1 키워드
 
-  - 각 프로퍼티에 따라 사용할 수 있는 키워드가 존재한다.(추후 추가)
+  - 각 프로퍼티에 따라 사용할 수 있는 키워드가 존재한다.
 
 - ##### 3.2 크기 단위
 
@@ -1211,7 +2561,7 @@ CSS
 
 - CSS와 HTML을 연동하는 방법으로는 아래의 3가지가 있다.
 
-  - ##### 4.1 Link style
+  - ##### Link style
 
     - HTML에서 외부에 있는 CSS 파일을 로드하는 방식이다. 가장 일반적으로 사용된다.
 
@@ -1233,7 +2583,7 @@ CSS
       p  { background: blue; }
       ```
 
-  - ##### 4.2 Embedding style
+  - ##### Embedding style
 
     - HTML 내부에 CSS를 포함시키는 방식이다. 
 
@@ -1255,7 +2605,7 @@ CSS
       </html>
       ```
 
-  - ##### 4.3 Inline style
+  - ##### Inline style
 
     - HTML요소의 style 프로퍼티에 css를 기술하는 방식이다.
 
