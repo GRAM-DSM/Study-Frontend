@@ -2285,6 +2285,440 @@ CSS
     ```
 
   - 특정 방향으로만 스크롤을 표시하고자 할 때는 overflow-x나 y를 사용한다.
+  
+- ##### 2.30 float 프로퍼티
+
+  - 레이아웃을 구성할 때 블록 레벨 요소를 가로 정렬하기 위해 사용되는 기법
+
+  - 아래 예제처럼 이미지와 텍스트가 같이 있을 때, 이미지 주위를 텍스트로 감싼다.
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        img {
+          float: left;
+          margin-right: 10px;
+        }
+      </style>
+    </head>
+    <body>
+      <img src="https://poiemaweb.com/img/doug.jpg">
+      <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+    </body>
+    </html>
+    ```
+
+  - | 프로퍼티값 | Description                         |
+    | ---------- | ----------------------------------- |
+    | none       | 요소를 떠 있게 하지 않는다.(기본값) |
+    | right      | 요소를 오른쪽으로 이동시킨다.       |
+    | left       | 요소를 왼쪽으로 이동시킨다.         |
+
+  - ###### 2.30.1 정렬
+
+    - float: left;는 요소를 왼쪽부터 가로 정렬, float: right는 오른쪽부터 가로 정렬한다.
+
+      ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          .box {
+            color: white;
+            font-weight: bold;
+            font-size: 50px;
+            border-radius: 6px;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            padding: 10px;
+          }
+          .d1, .d2 {
+            float: left;
+          }
+          .d1 {
+            background: red;
+          }
+          .d2 {
+            background: orange;
+          }
+          .d3, .d4 {
+            float: right;
+          }
+          .d3 {
+            background: red;
+          }
+          .d4 {
+            background: orange;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="box d1"> 1 </div>
+          <div class="box d2"> 2 </div>
+          <div class="box d3"> 3 </div>
+          <div class="box d4"> 4 </div>
+        </div>
+      </body>
+      </html>
+      ```
+
+    - float 프로퍼티는 중앙 정렬을 하지 못한다.(margin 사용)
+
+  - ###### 2.30.2 width
+
+    - width의 기본값은 100%이므로 아래와 같은 코드에서 block 요소는 화면의 가로폭을 가득 채운다.
+
+    - ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          .box {
+            color: white;
+            font-weight: bold;
+            font-size: 30px;
+            line-height: 50px;
+            height: 50px;
+            margin: 0 10px;
+            padding: 10px;
+          }
+          .d1 {
+            background: red;
+          }
+          .d2 {
+            background: orange;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="box d1"> div </div>
+        <div class="box d2"> div </div>
+      </body>
+      </html>
+      ```
+
+    - width 프로퍼티를 선언하지 않으면 width가 inline 요소처럼 content에 맞춰 최소화되고 다음 요소 위에 부유하게 된다.
+
+    - ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          .box {
+            color: white;
+            font-weight: bold;
+            font-size: 30px;
+            line-height: 50px;
+            height: 50px;
+            margin: 0 10px;
+            padding: 10px;
+          }
+          .d1 {
+            float: left;
+            background: red;
+          }
+          .d2 {
+            background: orange;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="box d1"> float: left; </div>
+        <div class="box d2"> div </div>
+      </body>
+      </html>
+      ```
+
+    - 위 예제의 경우 d1 클래스 요소는 width가 inline 요소와 같이 content에 맞게 최소화되고 다음 요소인 d2 클래스 요소 위에 떠 있게 된다.
+
+  - ###### 2.30.3 float 프로퍼티 관련 문제 해결 방법
+
+    - *2.30.3.1 float 프로퍼티가 선언된 요소와 float 프로퍼티가 선언되지 않은 요소간 marge이 사라지는 문제*
+
+      - float 프로터피가 선언되지 않은 요소에 overflow: hidden을 선언한다.
+
+        ```html
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+            .box {
+              color: white;
+              font-weight: bold;
+              font-size: 30px;
+              line-height: 50px;
+              height: 50px;
+              margin: 0 10px;
+              padding: 10px;
+            }
+            .d1 {
+              float: left;
+              background: red;
+            }
+            .d2 {
+              overflow: hidden;
+              background: orange;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="box d1"> float: left; </div>
+          <div class="box d2"> div </div>
+        </body>
+        </html>
+        ```
+
+    - *2.30.3.2 float 프로퍼티가 선언된 자식 요소를 포함하는 부모 요소의 높이가 정상적으로 반영되지 않는 문제*
+
+      - float 요소가 일반적인 흐름상에 존재하지 않아 float 요소의 높이를 알 수 없는데, 이는 부모 요소 이후의 요소의 정렬에 문제를 발생시킨다.
+
+        ```html
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+            .container {
+              color: white;
+              text-align: center;
+              padding: 10px;
+              background-color: #def0c2;
+            }
+            .d1, .d2 {
+              float: left;
+              width: 50%;
+              padding: 20px 0;
+            }
+            .d1 {
+              background-color: #59b1f6;
+            }
+            .d2 {
+              background-color: #ffb5b4;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="d1">1</div>
+            <div class="d2">2</div>
+          </div>
+          <div style="background:red;padding:10px;color:white;">3</div>
+        </body>
+        </html>
+        ```
+
+      - 위 문제를 해결하려면 float 프로퍼티가 선언된 자식 요소의 부모 요소에 overflow: hidden 프로퍼티를 선언하거나 부모 요소에 float 프로퍼티를 선언하면 된다.
+
+      - 또다른 방법으로는 :after 가상 클래스 셀렉터가 있다.
+
+        ```html
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+            .container {
+              color: white;
+              text-align: center;
+              padding: 10px;
+              background-color: #def0c2;
+              /*overflow: hidden;*/
+            }
+            .clearfix:after {
+              content: "";
+              display: block;
+              clear: both;
+            }
+            .d1, .d2 {
+              float: left;
+              width: 50%;
+              padding: 20px 0;
+            }
+            .d1 {
+              background-color: #59b1f6;
+            }
+            .d2 {
+              background-color: #ffb5b4;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="container clearfix">
+            <div class="d1">1</div>
+            <div class="d2">2</div>
+          </div>
+          <div style="background:red;padding:10px;color:white;">3</div>
+        </body>
+        ```
+
+      - 이외에도 float 프로퍼티 대신 display: inline-block;을 선언하는 것이다. 이 방법은 두 요소 사이에 자동 공백을 지정하므로 font-size: 0;을 선언하여 공백을 제거한다.
+
+        ```html
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+            .container {
+              color: white;
+              text-align: center;
+              padding: 10px;
+              background-color: #def0c2;
+              /* 폰트 사이즈를 0으로 지정하여 두 요소 사이에 정의하지 않은 공백을 제거 */
+              font-size: 0;
+            }
+            .d1, .d2 {
+              display: inline-block;
+              width: 50%;
+              padding: 20px 0;
+              /* 폰트 사이즈를 재지정 */
+              font-size: 1rem;
+            }
+            .d1 {
+              background-color: #59b1f6;
+            }
+            .d2 {
+              background-color: #ffb5b4;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="d1">1</div>
+            <div class="d2">2</div>
+          </div>
+          <div style="background:red;padding:10px;color:white;">3</div>
+        </body>
+        </html>
+        ```
+
+- ##### 2.31 상속 (Inheritance)
+
+  - 상위 요소에 적용된 프로퍼티를 하위 요소가 물려 받는 것.
+
+  - | Inherit |                           property                           |
+    | :-----: | :----------------------------------------------------------: |
+    |   yes   | visibility, opacity, font, color, line-height, text-align, .white-space |
+    |   no    | width/height, margin, padding, border, box-sizing, display, background, verical-align, text-decoration, psition, top/right/bottom/left, z-index, overflow, float |
+
+  - ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <style>
+        .text-red {
+          color: red;
+          border: 1px solid #bcbcbc;
+          padding: 10px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="text-red">
+        <h1>Heading</h1>
+        <p>Paragraph<strong>strong</strong></p>
+        <button>Button</button>
+      </div>
+    </body>
+    </html>
+    ```
+
+    위 예시를 확인해보면 botton은 상속의 대상이 아니다. 이와 같이 요소에 따라 상속 받지 않는 경우들이 존재한다. 이외에도 borer, padding은 상속되지 않는 요소로 하위 요소에 적용되지 않는다.
+
+  - 상속받지 않는 경우, inherit 키워드를 사용하여 명시적으로 상속받게 할 수 있다.
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <style>
+        .text-red {
+          color: red;
+          border: 1px solid #bcbcbc;
+          padding: 10px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="text-red">
+        <h1>Heading</h1>
+        <p>Paragraph<strong>strong</strong></p>
+        <button>Button</button>
+      </div>
+    </body>
+    </html>
+    ```
+
+- ##### 2.32 캐스캐이딩 (Cascading)
+
+  - 요소는 다수의 CSS 선언에 영향을 받을 수 있기 때문에 충돌을 피하기 위한 CSS 적용 우선순위를 캐스캐이딩이라고 한다.
+
+  - 캐스캐이딩에는 중요도, 명시도, 선언순서의 세 가지 규칙이 있다.
+
+    - *2.32.1* *중요도*
+
+      - CSS가 어디에 선언 되었는지에 따라서 우선순위가 달라진다.
+        1. head 요소 내의 style 요소
+        2. head 요소 내의 style 요소 내의 @import문
+        3. < link >로 연결된 CSS 파일
+        4. < link >로 연결된 CSS 파일 내의 @import문
+        5. 브라우저 디폴트 스타일시트 
+
+    - *2.32.2 명시도*
+
+      - 대상을 명확하게 특정할수록 명시도가 높아지고 우선순위가 높아진다.
+
+        - !important > 인라인 스타일 > 아이디 선택자 > 클래스/어트리뷰트/가상 선택자 > 태그 선택자 > 전체 선택자 > 상위 요소에 의해 상속된 속성
+
+        - ```html
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <style>
+              p        { color: red !important; }
+              #thing   { color: blue; }
+          
+              div.food { color: chocolate; }
+              .food    { color: green; }
+              div      { color: orange; }
+            </style>
+          </head>
+          <body>
+            <p id="thing">Will be Red.</p>
+            <div class="food">Will be Chocolate.</div>
+          </body>
+          </html>
+          ```
+
+          
+
+    - *2.32.3 선언순서*
+
+      - 선언된 순서에 따라 우선 순위가 적용된다.(후순위 스타일 우선)
+
+      - ```html
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+            p { color: blue; }
+            p { color: red; }
+        
+            .red { color: red; }
+            .blue { color: blue; }
+          </style>
+        </head>
+        <body>
+          <p>Will be RED.</p>
+          <p class="blue red">Will be BLUE.</p>
+        </body>
+        </html>
+        ```
+
+        
 
 
 #### 3. 값(value/속성값)
