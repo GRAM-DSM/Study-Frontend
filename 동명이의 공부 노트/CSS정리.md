@@ -1,4 +1,4 @@
-CSS
+## CSS
 
 [TOC]
 
@@ -2718,7 +2718,1460 @@ CSS
         </html>
         ```
 
+- ##### 2.33 벤더 프리픽스
+
+  - CSS3 표준으로 확정되기 이전 또는 브라우저 개발사가 실험적으로 제공하는 기능을 사용하게 해주는 기능.
+
+  - 브라우저 별 벤더 프리픽스는 다음과 같다.
+
+    | Browser            | Vendor Prefix |
+    | ------------------ | ------------- |
+    | IE or Edge         | -ms-          |
+    | Chrome             | -webkit-      |
+    | Firefox            | -moz-         |
+    | Safari             | -webkit-      |
+    | Opera              | -o-           |
+    | IOS Safari         | -webkit-      |
+    | Android Browser    | -webkit-      |
+    | Chrome for Android | -webkit-      |
+
+- ##### 2.34 그림자 속성 프로퍼티
+
+  - ###### 2.34.1 text-shadow
+
+    - 텍스트에 그림자 효과를 부여하는 프로퍼티이다.
+
+    - ```css
+      선택자 { text-shadow: Horizontal-offset Vertical-offset Blur-Radius Shadow-Color; }
+      ```
+
+    - | 프로퍼티 값       | 단위  | 설명                                                         | 생략 여부 |
+      | ----------------- | ----- | ------------------------------------------------------------ | --------- |
+      | Horizontal-offset | px    | 그림자를 텍스트의 오른쪽으로 지정값만큼 이동시킨다.          |           |
+      | Vertical-offset   | px    | 그림자를 텍스트의 아래로 지정값만큼 이동시킨다.              |           |
+      | Blur-Radius       | px    | 그림자의 흐림정도를 지정한다. 지정값만큼 그림자가 커지고 흐려진다. | 가능      |
+      | Shadow-Color      | color | 그림자의 색상을 지정한다.                                    | 가능      |
+
+    - ```html
+      <!DOCTYPE html><font></font>
+      <html><font></font>
+      <head><font></font>
+        <style><font></font>
+          h1:nth-child(1) {<font></font>
+            text-shadow: 5px 5px;<font></font>
+          }<font></font>
+          h1:nth-child(2) {<font></font>
+            text-shadow: 5px 5px red;<font></font>
+          }<font></font>
+          h1:nth-child(3) {<font></font>
+            text-shadow: 5px 5px 3px red;<font></font>
+          }<font></font>
+          h1:nth-child(4) {<font></font>
+            color: white;<font></font>
+            text-shadow: 5px 5px 3px black;<font></font>
+          }<font></font>
+          h1:nth-child(5) {<font></font>
+            text-shadow: 0 0 3px red;<font></font>
+          }<font></font>
+          /*Multiple Shadows*/<font></font>
+          h1:nth-child(6) {<font></font>
+            text-shadow: 0 0 3px red, 0 0 10px blue;<font></font>
+          }<font></font>
+          /*Multiple Shadows*/<font></font>
+          h1:nth-child(7) {<font></font>
+            color: white;<font></font>
+            text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;<font></font>
+          }<font></font>
+        </style><font></font>
+      </head><font></font>
+      <body><font></font>
+        <h1>Text-shadow effect!</h1><font></font>
+        <h1>Text-shadow effect!</h1><font></font>
+        <h1>Text-shadow effect!</h1><font></font>
+        <h1>Text-shadow effect!</h1><font></font>
+        <h1>Text-shadow effect!</h1><font></font>
+        <h1>Text-shadow effect!</h1><font></font>
+        <h1>Text-shadow effect!</h1><font></font>
+      </body><font></font>
+      </html><font></font>
+      ```
+
+  - ###### 2.34.2 box-shadow
+
+    - 요소에 그림자 효과를 부여하는 프로퍼티이다.
+
+    - ```css
+      선택자 { box-shadow: Inset Horizontal-offset Vertical-offset Blur-Radius Spread Shadow-Color; }
+      ```
+
+    - | 프로퍼티 값       | 단위  | 설명                                                   | 생략 |
+      | ----------------- | ----- | ------------------------------------------------------ | ---- |
+      | Inset             | inset | inset 키워드를 지정하면 그림자가 요소 안쪽에 위치한다. | 가능 |
+      | Horizontal-offset | px    | 그림자를 텍스트의 오른쪽으로 지정값만큼 이동시킨다.    |      |
+      | Vertical-offset   | px    | 그림자를 텍스트의 아래로 지정값만큼 이동시킨다.        |      |
+      | Blur-Radius       | px    | 그림자의 흐림정도를 지정한다.                          | 가능 |
+      | Spread            | px    | 그림자를 더 크게 확장시킨다.(음, 양값)                 | 가능 |
+      | Shadow-Color      | color | 그림자의 색상을 지정한다.                              | 가능 |
+
+    - ```html
+      <!DOCTYPE html><font></font>
+      <html><font></font>
+      <head><font></font>
+        <style><font></font>
+          div {<font></font>
+            width: 300px;<font></font>
+            height: 100px;<font></font>
+            padding: 15px;<font></font>
+            margin: 20px;<font></font>
+            background-color: yellow;<font></font>
+          }<font></font>
+          /*box-shadow: Inset Horizontal-offset Vertical-offset Blur-Radius Spread Shadow-Color;*/<font></font>
+          /* Horizontal-offset Vertical-offset */<font></font>
+          div:nth-of-type(1) {<font></font>
+            box-shadow: 10px 10px;<font></font>
+          }<font></font>
+          /* Horizontal-offset Vertical-offset Shadow-Color */<font></font>
+          div:nth-of-type(2) {<font></font>
+            box-shadow: 10px 10px blue;<font></font>
+          }<font></font>
+          /* Horizontal-offset Vertical-offset Blur-Radius Shadow-Color */<font></font>
+          div:nth-of-type(3) {<font></font>
+            box-shadow: 10px 10px 5px blue;<font></font>
+          }<font></font>
+          /* Horizontal-offset Vertical-offset Blur-Radius Spread Shadow-Color */<font></font>
+          div:nth-of-type(4) {<font></font>
+            box-shadow: 10px 10px 5px 5px blue;<font></font>
+          }<font></font>
+          /* Inset Horizontal-offset Vertical-offset Blur-Radius Spread Shadow-Color */<font></font>
+          div:nth-of-type(5) {<font></font>
+            box-shadow: inset 10px 10px 5px 5px blue;<font></font>
+          }<font></font>
+          /* Horizontal-offset Vertical-offset Blur-Radius Spread Shadow-Color */<font></font>
+          div:nth-of-type(6) {<font></font>
+            background-color: white;<font></font>
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);<font></font>
+          }<font></font>
+        </style><font></font>
+      </head><font></font>
+      <body><font></font>
+        <div>This is a div element with a box-shadow</div><font></font>
+        <div>This is a div element with a box-shadow</div><font></font>
+        <div>This is a div element with a box-shadow</div><font></font>
+        <div>This is a div element with a box-shadow</div><font></font>
+        <div>This is a div element with a box-shadow</div><font></font>
+        <div>This is a div element with a box-shadow</div><font></font>
+      </body><font></font>
+      </html><font></font>
+      ```
+
+- ##### 2.35 그레이디언트(Gradient)
+
+  - 2가지 이상의 색상을 혼합하여 부드러운 색감의 배경 등을 생성하는 것. CSS3가 비교적 최근에 제공하는 기술로서 대부분의 브라우저에 벤더프리픽스를 사용하여야 한다.
+
+  - 선형, 방사형 그레이디언트의 두 종류가 있다.
+
+  - ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        body {
+          margin: 0;
+        }
+        div {
+          width: 100vw;
+          height: 100vh;
+        }
+        .dawn {
+          /* Old browsers */
+          background: #b3cae5;
+          /* FF3.6+ */
+          background: -moz-linear-gradient(-45deg, #b3cae5 12%, #dbdde4 46%, #e4e3e4 70%, #f7ddbb 94%, #efcab2 100%);
+          /* Chrome,Safari4+ */
+          background: -webkit-gradient(linear, left top, right bottom, color-stop(12%, #b3cae5), color-stop(46%, #dbdde4), color-stop(70%, #e4e3e4), color-stop(94%, #f7ddbb), color-stop(100%, #efcab2));
+          /* Chrome10+,Safari5.1+ */
+          background: -webkit-linear-gradient(-45deg, #b3cae5 12%, #dbdde4 46%, #e4e3e4 70%, #f7ddbb 94%, #efcab2 100%);
+          /* Opera 11.10+ */
+          background: -o-linear-gradient(-45deg, #b3cae5 12%, #dbdde4 46%, #e4e3e4 70%, #f7ddbb 94%, #efcab2 100%);
+          /* IE10+ */
+          background: -ms-linear-gradient(-45deg, #b3cae5 12%, #dbdde4 46%, #e4e3e4 70%, #f7ddbb 94%, #efcab2 100%);
+          /* W3C */
+          background: linear-gradient(135deg, #b3cae5 12%, #dbdde4 46%, #e4e3e4 70%, #f7ddbb 94%, #efcab2 100%);
+        }
+      </style>
+    </head>
+    <body>
+      <div class="dawn"></div>
+    </body>
+    </html>
+    
+    ```
+
+- ##### 2.36 트랜지션
+
+  - CSS 프로퍼티의 값이 변화할 때, 프로퍼티 값의 변화가 일정 시간에 걸쳐 일어나도록 하는 것.
+  
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        div {
+          width: 100px;
+          height: 100px;
+          background: red;
+          /* 트랜지션 효과: 모든 프로퍼티의 변화를 2초에 걸쳐 전환한다. */
+          transition: all 2s;
+        }
+        div:hover {
+          border-radius: 50%;
+          background: blue;
+        }
+      </style>
+    </head>
+    <body>
+      <div></div>
+    </body>
+    </html>
+    ```
+  
+    ​	위 예제는 마우스가 요소에 올라감 여부에 따라 요소의 색과 모양이 변화하는 예제이다.
+  
+  - 위 예제에서 div:hover 셀렉터의 룰셋에 트랜지션을 설정하면 마우스가 올라갈 때만 트랜지션이 발동한다.
+  
+  - 트랜지션은 자동으로 발동되지 않는다. 이를 원한다면 CSS 애니메이션을 사용해야 한다.
+  
+  - | 프로퍼티                   | 설명                                                         | 기본값 |
+    | -------------------------- | ------------------------------------------------------------ | ------ |
+    | transition-property        | 트랜지션의 대상이 되는 CSS 프로퍼티를 지정한다.              | all    |
+    | transition-duration        | 트랜지션이 일어나는 지속시간을 초 단위 또는 밀리 초(ms) 단위로 지정한다. | 0s     |
+    | transition-timing-function | 트랜지션 효과를 위한 수치 함수를 지정한다                    | ease   |
+    | transition-delay           | 프로퍼티가 변화한 시점과 트랜지션이 실제로 시작하는 사이에 대기하는 시간을 초 단위 또는 밀리 초 단위로 지정한다. | 0s     |
+    | transition                 | 모든 트랜지션 프로퍼티를 한 번에 지정한다.                   |        |
+  
+  - ###### 2.36.1 transition-property
+  
+    - ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          div {
+            width: 100px;
+            height: 50px;
+            background-color: red;
+            margin-bottom: 10px;
+            transition-property: width, background-color;
+            transition-duration: 2s, 2s;
+          }
+          div:hover {
+            width: 300px;
+            background-color: blue;
+          }
+        </style>
+      </head>
+      <body>
+        <div></div>
+      </body>
+      </html>
+      ```
+  
+    - 트랜지션의 대상이 될 수 있는 프로퍼티는 정해져 있다.
+  
+    ```
+    // Box model
+    width height max-width max-height min-width min-height
+    padding margin
+    border-color border-width border-spacing
+    // Background
+    background-color background-position
+    // 좌표
+    top left right bottom
+    // 텍스트
+    color font-size font-weight letter-spacing line-height
+    text-indent text-shadow vertical-align word-spacing
+    // 기타
+    opacity outline-color outline-offset outline-width
+    visibility z-index
+    ```
+  
+  - ###### 2.36.2 transition-duration
+  
+    - ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          div {
+            width: 100px;
+            height: 50px;
+            padding: 10px;
+            color: white;
+            background-color: red;
+            margin-bottom: 10px;
+            transition-property: width, opacity;
+          }
+          div:nth-child(1) {
+            transition-duration: 0.5s;
+          }
+          div:nth-child(2) {
+            transition-duration: 2s, 1s;
+          }
+          div:nth-child(3) {
+            transition-duration: 5s, 2.5s;
+          }
+          div:hover {
+            width: 300px;
+            opacity: .1;
+          }
+        </style>
+      </head>
+      <body>
+        <div>0.5s</div>
+        <div>2s, 1s</div>
+        <div>5s, 2.5s</div>
+      </body>
+      </html>
+      ```
+  
+  - ###### 2.36.3transition-timing-function
+  
+    - | 프로퍼티값  | 효과                                                         | 그래프                                                       |
+      | ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+      | ease        | 기본값. 느리게 시작하여 점점 빨라졌다가 느려지면서 종료한다. | <img src="https://poiemaweb.com/img/cubic-bezier-ease.png" alt="img" style="zoom:67%;" /> |
+      | linear      | 시작부터 종료까지 등속 운동을 한다.                          | <img src="https://poiemaweb.com/img/cubic-bezier-linear.png" alt="img" style="zoom:64%;" /> |
+      | ease-in     | 느리게 시작한 후 일정한 속도에 다다르면 그 상태로 등속 운동한다. | <img src="https://poiemaweb.com/img/cubic-bezier-ease-in.png" alt="img" style="zoom:64%;" /> |
+      | ease-out    | 일정한 속도의 등속으로 시작해서 점점 느려지면서 종료한다.    | <img src="https://poiemaweb.com/img/cubic-bezier-ease-out.png" alt="img" style="zoom:64%;" /> |
+      | ease-in-out | ease와 비슷하게 느리게 시작하여 느려지면서 종료한다.         | <img src="https://poiemaweb.com/img/cubic-bezier-ease-in-out.png" alt="img" style="zoom:64%;" /> |
+  
+      ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          div {
+            font: bold 16px/50px "Open Sans";
+            color: white;
+            text-align: center;
+            width: 100px;
+            height: 50px;
+            background-color: red;
+            margin-bottom: 10px;
+            transition: width 2s;
+          }
+          div:nth-child(1) {
+            transition-timing-function: ease;
+          }
+          div:nth-child(2) {
+            transition-timing-function: linear;
+          }
+          div:nth-child(3) {
+            transition-timing-function: ease-in;
+          }
+          div:nth-child(4) {
+            transition-timing-function: ease-out;
+          }
+          div:nth-child(5) {
+            transition-timing-function: ease-in-out;
+          }
+          div:hover {
+            width: 300px;
+          }
+        </style>
+      </head>
+      <body>
+        <h3>transition-timing-function</h3>
+        <div>ease</div>
+        <div>linear</div>
+        <div>ease-in</div>
+        <div>ease-out</div>
+        <div>ease-in-out</div>
+      </body>
+      </html>
+      ```
+  
+  - ###### 2.36.4 trasition-delay
+  
+    - ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          div {
+            font: bold 16px/50px "Open Sans";
+            color: white;
+            text-align: center;
+            width: 100px;
+            height: 50px;
+            background-color: red;
+            margin-bottom: 10px;
+            transition: width 1s;
+          }
+          div:nth-of-type(1) {
+            transition-delay: 0s;
+          }
+          div:nth-of-type(2) {
+            transition-delay: 1s;
+          }
+          div:nth-of-type(3) {
+            transition-delay: 3s;
+          }
+          div:hover {
+            width: 300px;
+          }
+        </style>
+      </head>
+      <body>
+        <h3>transition-delay</h3>
+        <div>0s</div>
+        <div>1s</div>
+        <div>3s</div>
+      </body>
+      </html>
+      ```
+  
+  - ###### 2.36.5 transition
+  
+    - 모든 프랜지션 프로퍼티를 한 번에 지정할 수 있는 shorthand이다. 지정 방법은 다음과 같다.
+  
+      ```html
+      transition: property duration function delay
+      ```
+  
+- ##### 2.37 애니메이션
+
+  - CSS 스타일을 다른 CSS 스타일로 부드럽게 전환시키는 효과이다.
+
+  - | 프로퍼티                  | 설명                                                         | 기본값  |
+    | ------------------------- | ------------------------------------------------------------ | ------- |
+    | animation-name            | @keyframes 애니메이션 이름을 지정한다.                       |         |
+    | animation-duration        | 한 싸이클의 애니메이션에 소요되는 시간을 초 단위 또는 밀리 초 단위로 지정한다. | 0s      |
+    | animation-timing-function | 애니메이션 효과를 위한 타이밍 함수를 지정한다.               | ease    |
+    | animation-delay           | 요소가 로드된 시점과 애니메이션이 실제로 시작하는 사이에 대기하는 시간을 초 단위 또는 밀리 초 단위로 지정한다. | 0s      |
+    | animation-iteration-count | 애니메이션 재생 횟수를 지정한다.                             | 1       |
+    | animation-direction       | 애니메이션이 종료된 이후 반복될 때 진행하는 방향을 지정한다. | normal  |
+    | animation-fill-mode       | 애니메이션 미실행 시(종료 또는 대기)  요소의 스타일을 지정한다. |         |
+    | animation-play-state      | 애니메이션 재생 상태(재생 또는 중지)를 지정한다.             | running |
+    | animation                 | 모든 애니메이션 프로퍼티를 한번에 지정한다.                  |         |
+
+  - ###### 2.37.1 @keyframes
+
+    - ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          div {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            animation-name: move;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+          }
+          /* @keyframes rule */
+          @keyframes move {
+            /* keyframe */
+            from {
+              left: 0;
+            }
+            /* keyframe */
+            to {
+              left: 300px;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        <div></div>
+      </body>
+      </html>
+      ```
+
+  - ###### 2.37.2 animation-name
+  
+    - @keyframes 뒤에 임의로 부여하는 이름을 프로퍼티값으로 지정하여 사용할 @keyframes rule을 선택한다.
+  
+      ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          div {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            animation-name: move, fadeOut, changeColor;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+          }
+          @keyframes move {
+            from { left: 0; }
+            to   { left: 300px; }
+          }
+          @keyframes fadeOut {
+            from { opacity: 1; }
+            to   { opacity: 0; }
+          }
+          @keyframes changeColor {
+            from { background-color: red; }
+            to   { background-color: blue; }
+          }
+        </style>
+      </head>
+      <body>
+        <div></div>
+      </body>
+      </html>
+      ```
+  
+  - ###### 2.37.3 animation-duration
+  
+    - 한 싸이클의 애니메이션에 소요되는 시간을 지정한다. 이를 지정하지 않으면 애니매이션이 실행되지 않는다.
+  
+  - ###### 2.37.4 animation-timing-function
+  
+    - 애니메이션 효과를 위한 수치 함수를 지정한다. 트랜지션 참조
+  
+  - ###### 2.37.5 animation-delay
+  
+    - 애니메이션이 시작하기까지의 딜레이를 지정해준다.
+  
+  - ###### 2.27.6 animation-iteration-count
+  
+    - 애니메이션의 재생 횟수를 지정한다.
+  
+  - ###### 2.27.7 animation-direction
+  
+    - | 프로퍼티값        | 설명                                                |
+      | ----------------- | --------------------------------------------------- |
+      | normal            | 기본값으로 from(0%)에서 to(100%) 방향으로 진행한다. |
+      | reverse           | to에서 from 방향으로 진행한다.                      |
+      | alternate         | 홀수번째는 normal로, 짝수번째는 reverse로 진행한다. |
+      | alternate-reverse | 홀수번째는 reverse로, 짝수번째는 normal로 진행한다. |
+  
+    - ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          div {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: relative;
+            animation: myAnimation 5s infinite;
+            /*홀수번째는 normal로, 짝수번째는 reverse로 진행*/
+            animation-direction: alternate;
+          }
+          @keyframes myAnimation {
+            0%   { background: red;    left: 0px;   top: 0px; }
+            25%  { background: yellow; left: 200px; top: 0px; }
+            50%  { background: blue;   left: 200px; top: 200px; }
+            75%  { background: green;  left: 0px;   top: 200px; }
+            100% { background: red;    left: 0px;   top: 0px; }
+          }
+        </style>
+        </head>
+        <body>
+          <div></div>
+        </body>
+      </html>
+      
+      ```
+  
+  - ###### 2.37.8 animation-fill-mode
+  
+    - 애니메이션 미실행 시(대기 또는 종료) 요소의 스타일을 지정한다.
+  
+    - | 프로퍼티값 | 상태 | 설명                                                         |
+      | ---------- | ---- | ------------------------------------------------------------ |
+      | none       | 대기 | 시작 프레임(from)에 설정한 스타일을 적용하지 않고 대기한다.  |
+      |            | 종료 | 애니메이션 실행 전 상태로 애니메이션 요소의 프로퍼티값을 되돌리고 종료한다. |
+      | forwards   | 대기 | 시작 프레임(from)에 설정한 스타일을 적용하지 않고 대기한다.  |
+      |            | 종료 | 종료 프레임(to)에 설정한 스타일을 적용하고 종료한다.         |
+      | backwards  | 대기 | 시작 프레임(from)에 설정한 스타일을 적용하고 대기한다.       |
+      |            | 종료 | 애니메이션 실행 전 상태로 애니메이션 요소의 프로퍼티값을 되돌리고 종료한다. |
+      | both       | 대기 | 시작 프레임(from)에 설정한 스타일을 적용하고 대기한다.       |
+      |            | 종료 | 종료 프레임(to)에 설정한 스타일을 적용하고 종료한다.         |
+  
+      ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          div {
+            width: 100px;
+            height: 100px;
+            font: bold 1em/100px san-serif;
+            text-align: center;
+            color: #fff;
+            background: red;
+            margin-bottom: 10px;
+            position: relative;
+            /*name duration timing-function delay iteration-count direction fill-mode play-state*/
+            animation: myAnimation 2s linear 2s;
+          }
+          div:nth-of-type(1) {
+            animation-fill-mode: none;
+          }
+          div:nth-of-type(2) {
+            animation-fill-mode: forwards;
+          }
+          div:nth-of-type(3) {
+            animation-fill-mode: backwards;
+          }
+          div:nth-of-type(4) {
+            animation-fill-mode: both;
+          }
+          @keyframes myAnimation {
+            0%   { left: 0px;   background: yellow; }
+            100% { left: 200px; background: blue; }
+          }
+        </style>
+      </head>
+      <body>
+        <h1>animation-fill-mode</h1>
+      
+        <div>none</div>
+        <p>대기 : 시작 프레임(from)에 설정한 스타일을 적용하지 않고 대기한다.</p>
+        <p>종료 : 애니메이션 실행 전 상태로 애니메이션 요소의 프로퍼티값을 되돌리고 종료한다.</p>
+      
+        <div>forwards</div>
+        <p>대기 : 시작 프레임(from)에 설정한 스타일을 적용하지 않고 대기한다.
+        <p>종료 : 종료 프레임(to)에 설정한 스타일을 적용하고 종료한다.
+      
+        <div>backwards</div>
+        <p>대기 : 시작 프레임(from)에 설정한 스타일을 적용하고 대기한다.
+        <p>종료 : 애니메이션 실행 전 상태로 애니메이션 요소의 프로퍼티값을 되돌리고 종료한다.
+      
+        <div>both</div>
+        <p>대기 : 시작 프레임(from)에 설정한 스타일을 적용하고 대기한다.
+        <p>종료 : 종료 프레임(to)에 설정한 스타일을 적용하고 종료한다.
+      </body>
+      </html>
+      ```
+  
+  - ###### 2.37.9 animation-play-state
+  
+    - 애니메이션 재생 상태를 지정한다.
+  
+    - ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          div {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: relative;
+            /*name duration timing-function delay iteration-count direction fill-mode play-state*/
+            animation: move 5s infinite;
+          }
+          div:hover {
+            background: blue;
+            animation-play-state: paused;
+          }
+          div:active {
+            background: yellow;
+            animation-play-state: running;
+          }
+          @keyframes move {
+            from { left: 0px; }
+            to   { left: 200px; }
+          }
+        </style>
+      </head>
+      <body>
+        <h1>animation-play-state</h1>
+        <div></div>
+      </body>
+      </html>
+      ```
+  
+      ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          .box {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            animation-name: move;
+            animation-duration: 5s;
+            animation-play-state: paused; /* 초기 애니메이션 재생 상태: 정지 */
+            animation-iteration-count: infinite;
+          }
+      
+          /* @keyframes rule */
+          @keyframes move {
+            from {
+              left: 0;
+            }
+      
+            to {
+              left: 300px;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="box"></div>
+        <button class="start">start animation</button>
+        <button class="pause">pause animation</button>
+      
+        <script>
+          const box = document.querySelector('.box');
+      
+          document.querySelector('.start').addEventListener('click', function () {
+            // trigger animation
+            // prefixes would be needed...
+            box.style.animationPlayState = 'running';
+          });
+      
+          document.querySelector('.pause').addEventListener('click', function () {
+            // pause animation
+            // prefixes would be needed...
+            box.style.animationPlayState = 'paused';
+          });
+        </script>
+      </body>
+      </html>
+      ```
+  
+  - ###### 2.37.10 animation
+  
+    - 모든 애니메이션 프로퍼티를 지정하는 shorthand. 
+  
+    - ```
+      animation: name duration timing-function delay iteration-count direction fill-mode play-state
+      ```
+  
+- ##### 2.38 트랜스폼
+
+  - 요소에 이동, 회전, 확대축소, 비틀기 효과를 부여한다.
+
+  - ###### 2.38.1 2D 트랜스폼
+
+    - 2D 트랜스폼은 프로퍼티값으로 변환함수를 사용한다.
+
+      | transform function     | 설명                                                         | 단위          |
+      | ---------------------- | ------------------------------------------------------------ | ------------- |
+      | translate(x,y)         | 요소의 위치를 X축으로 x만큼, Y축으로 y만큼 이동시킨다.       | px, %, em 등  |
+      | translateX(n)          | 요소의 위치를 X축으로 x만큼 이동시킨다.                      | px, %, em 등  |
+      | translateY(n)          | 요소의 위치를 Y축으로 y만큼 이동시킨다.                      | px, %, em 등  |
+      | scale(x,y)             | 요소의 크기를 X축으로 x배, Y축으로 y배 확대 또는 축소 시킨다. | 0과 양수      |
+      | scaleX(n)              | 요소의 크기를 X축으로 x배 확대 또는 축소 시킨다.             | 0과 양수      |
+      | scaleY(n)              | 요소의 크기를 Y축으로 y배 확대 또는 축소 시킨다.             | 0과 양수      |
+      | skew(x-angle, y-angle) | 요소를 X축으로 x 각도만큼, Y축으로 y 각도만큼 기울인다.      | +/- 각도(deg) |
+      | skewX(x-angle)         | 요소를 X축으로 x 각도만큼 기울인다.                          | +/- 각도(deg) |
+      | skewY(y-angle)         | 요소를 Y축으로 y 각도만큼 기울인다.                          | +/- 각도(deg) |
+      | rotate(angle)          | 요소를 angle만큼 회전시킨다.                                 | +/- 각도(deg) |
+
+    - *2.38.1.1 transform*
+
+      - 변환함수를 프로퍼티값으로 쉼표 없이 나열한다.
+
+        ```html
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+          .box {
+            width: 95px;
+            height: 95px;
+            line-height: 95px;
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+          }
+          .original {
+            margin: 30px;
+            border: 1px dashed #cecfd5;
+            background: #eaeaed;
+            float: left;
+          }
+          .child {
+            background: #2db34a;
+            cursor: pointer;
+          }
+          .translate {
+            transform: translate(10px, 50px);
+          }
+          .scale {
+            transform: scale(.75);
+          }
+          .skew {
+            transform: skew(5deg, -20deg);
+          }
+          .rotate {
+            transform: rotate(70deg);
+          }
+          .complex {
+            transform: scale(.5) rotate(20deg);
+          }
         
+          /* Animation Effect */
+          .translate:hover {
+            transition: transform 1s linear;
+            transform: translate(0px, 0px);
+          }
+          /* .translate:hover {
+            animation: translate 1s linear forwards;
+          }
+          @keyframes translate {
+            100% {
+              transform: translate(0px, 0px);
+            }
+          } */
+          .scale:hover {
+            transition: transform 1s linear;
+            transform: scale(1);
+          }
+          .skew:hover {
+            transition: transform 1s linear;
+            transform: skew(0, 0);
+          }
+          .rotate:hover {
+            transition: transform 1s linear;
+            transform: rotate(0);
+          }
+          .complex:hover {
+            transition: transform 1s linear;
+            transform: scale(1) rotate(0);
+          }
+          </style>
+        </head>
+        <body>
+          <div class="original box">
+            <div class="child box translate">translate</div>
+          </div>
+          <div class="original box">
+            <div class="child box scale">scale</div>
+          </div>
+          <div class="original box">
+            <div class="child box skew">skew</div>
+          </div>
+          <div class="original box">
+            <div class="child box rotate">rotate</div>
+          </div>
+          <div class="original box">
+            <div class="child box complex">complex</div>
+          </div>
+        </body>
+        </html>
+        ```
+
+    - *2.38.1.2* *transform-origin*
+
+      - 요소의 기본 기준점을 설정할 때 사용된다. 기본 기준점은 요소의 정중앙(50%, 50%)이다.
+
+        ```html
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+          .box {
+            width: 150px;
+            height: 150px;
+            line-height: 150px;
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+          }
+          .original {
+            margin: 20px;
+            border: 1px dashed #cecfd5;
+            background: #eaeaed;
+            float: left;
+          }
+          .child {
+            background: #2db34a;
+            cursor: pointer;
+          }
+          .scale1:hover {
+            transition: transform 1s linear;
+            transform-origin: 0 0;
+            transform: scale(.5);
+          }
+          .scale2:hover {
+            transition: transform 1s linear;
+            transform-origin: 50% 50%;
+            transform: scale(.5);
+          }
+          .scale3:hover {
+            transition: transform 1s linear;
+            transform-origin: 100% 100%;
+            transform: scale(.5);
+          }
+          .translate:hover {
+            transition: transform 1s linear;
+            /*transform-origin: 100% 100%;*/
+            transform: translate(10px, 10px);
+          }
+          </style>
+        </head>
+        <body>
+          <div class="original box">
+            <div class="child box scale1">scale1</div>
+          </div>
+          <div class="original box">
+            <div class="child box scale2">scale2</div>
+          </div>
+          <div class="original box">
+            <div class="child box scale3">scale3</div>
+          </div>
+          <div class="original box">
+            <div class="child box translate">translate</div>
+          </div>
+        </body>
+        </html>
+        ```
+
+  - ###### 2.38.2 3D 트랜스폼
+
+    - 2D 트랜스폼의 변환함수에서 3d를 붙혀준다. 단, 기울이기(skew)는 존재하지 않는다.
+
+- ##### 2.39 웹디자인 타이포그래피
+
+  - 사용자가 웹페이지를 요청한 순간 CSS에 기술된 필요 폰트가 서버에서 클라이언트로 전송되는 것. 존재하지 않는 폰트를 전송해준다.
+
+  - ###### 2.39.1 CDN(Content Delivery Network) 링크 방식
+
+    - ```css
+      @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+      
+      * { font-family: 'Nanum Gothic', sans-serif; }
+      ```
+
+  - ###### 2.39.2 서버 폰트 로딩 방식
+
+    - 위의 방식은 구글 폰트를 사용하기에 간편하지만 로딩 속도가 느린 단점이 있다.
+
+    - @font-face 규칙으로 폰트를 등록하고 font-family 프로퍼티로 폰트를 선택한다.
+
+    - ```css
+      /* IE 9~ & all browsers */
+      @font-face {
+        font-family: myFontName;
+        src: url("myFont.woff");
+      }
+      
+      * { font-family: myFontName, sans-serif; }
+      ```
+
+    - 단 브라우저에 따라 지원하는 폰트 파일 형식이 다르다는 문제가 있다.
+
+    - ```css
+      @font-face {
+        font-family:"Nanum Gothic";
+        src:url("NanumGothic.eot"); /* IE 9 호환성 보기 모드 대응 */
+        src:local("☺"),             /* local font 사용 방지. 생략 가능 */
+            url("NanumGothic.eot?#iefix") format('embedded-opentype'), /* IE 6~8 */
+            url("NanumGothic.woff") format('woff'); /* 표준 브라우저 */
+      }
+      
+      * { font-family: "Nanum Gothic", sans-serif; }
+      ```
+
+    - 영문과 한글을 혼용하는 경우 먼저 영문 폰트, 그 다음 한글 폰트를 지정하여야 한다. 한글 폰트부터 지정할 경우 영문 폰트에도 한글 폰트가 적용된다.
+
+- ##### 2.40 레이아웃
+
+  - ![layout-samples](https://poiemaweb.com/img/layout-samples.png)
+
+  - 레이아웃이란 웹사이트를 구성하는 요소들을 배치할 공간을 분할하고 정렬하는 것이다. 
+
+  - 공간을 분할할 때는 일반적으로 행을 구분한 후, 행 내부 요소를 분리한다.
+
+  - 화면의 크기에 따라 적절히 화면 구성을 변화시키는 반응형 웹 디자인에 쓰인다.
+
+  - ###### 2.40.1 Header & Navigation Bar
+
+    - 사이트 곳곳으로의 링크 목록이다.
+
+    - ![apple.com](https://poiemaweb.com/img/apple.png)
+
+    - 기본적으로 링크들의 리스트로 ul, li 태그를 이용하여 작성한다. 아래는 Navigation bar를 만드는 과정이다.
+
+    - ```html
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          /* Simple Reset CSS */
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+          body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: #58666e;
+            background-color: #f0f3f4;
+          }
+          li {
+            list-style: none;
+          }
+          a {
+            text-decoration: none;
+          }
+        </style>
+      </head>
+      <body>
+        <div id="wrap">
+          <header>
+            <a class="logo" href="#home">
+              <img src="https://poiemaweb.com/img/logo.png" height="36px">
+            </a>
+            <nav>
+              <ul class="nav-items">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">About</a></li>
+              </ul>
+            </nav>
+          </header>
+        </div>
+      </body>
+      </html>
+      ```
+
+      header 요소에 화면폭 기준의 width와 고정 height, background-color와 box-shadow 효과를 추가한다.
+
+      ```css
+      header {
+        width: 100%;
+        height: 60px;
+        z-index: 2000;
+        background-color: #fff;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
+      }
+      ```
+
+      float 프로퍼티를 이용하여 Navigation bar를 우측정렬한다.
+
+      ```css
+      nav{
+      	float: right;
+      }
+      ```
+
+      로고 이미지를 수직으로 중앙 정렬한다.
+
+      로고 이미지를 포함하는 a 태그의 height를 로고 이미지와 같은 36px로 지정하고 상하 margin을 12px씩 부여하면 로고 이미지가 중앙 정렬된다.
+
+      ```css
+      .logo {
+        display: inline-block;
+        height: 36px;
+        margin: 12px 0 12px 25px;
+      }
+      .logo > img { height: 36px; }
+      ```
+
+      수직 정렬된 Navigation bar를 수평 정렬한다. 
+
+      ```css
+      .nav-items > li {
+        display: inline-block;
+      }
+      ```
+
+      수평 정렬된 Navigation bar를 수직 중앙 정렬한다.
+
+      ```
+      .nav-items > li > a {
+        line-height: 60px;
+        padding: 0 30px;
+        color: rgba(0, 0, 0, 0.4);
+      }
+      ```
+
+      마우스가 Navigation bar 위에 올라오면 텍스트 색상이 변경되도록 한다.
+
+  - ###### 2.40.2 Section & Aside
+
+    - 콘텐츠의 영역을 Section, 콘텐츠에 대한 Navigation item이나 부가 정보 영역을 Aside라 한다.
+
+    - ```html
+      <div id="content-wrap">
+        <aside>
+          <h1>Aside</h1>
+          <ul>
+            <li><a href="#" class="active">London</a></li>
+            <li><a href="#">Paris</a></li>
+            <li><a href="#">Tokyo</a></li>
+            <li><a href="#">Newyork</a></li>
+          </ul>
+        </aside>
+        <section>
+          <article id="london">
+            <h1>London</h1>
+            <p>...</p>
+          </article>
+          <article id="paris">
+            <h1>Paris</h1>
+            <p>...</p>
+          </article>
+          <article id="tokyo">
+            <h1>Tokyo</h1>
+            <p>...</p>
+          </article>
+          <article id="newyork">
+            <h1>Newyork</h1>
+            <p>...</p>
+          </article>
+        </section>
+      <!-- end of content-wrap   -->
+      </div>
+      ```
+
+      aside를 좌측정렬, section을 우측 정렬한다.
+
+      ```css
+      /* clearfix */
+      #content-wrap:after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+      aside {
+        float: left;
+        width: 20%;
+      }
+      section {
+        float: right;
+        width: 80%;
+      }
+      ```
+
+      이 웹페이지에선 화면을 아래로 스크롤하면 navigation bar가 사라져 버리는 현상이 발생하기 때문에 fixed 프로퍼티로 header 요소를 상단에 고정시킨다.
+
+      ```css
+      header {
+        /* for sticky header */
+        position: fixed;
+        top: 0;
+        ...
+      }
+      ```
+
+      이 때 contents 영역 상단이 header 영역과 겹치므로 contents 영역을 header의 height만큼 아래로 끌어 내린다.
+
+      ```css
+      #wrap {
+        /* margin-top = header height */
+        margin-top: 60p;
+      }
+      ```
+
+      aside 영역도 마찬가지로 고정시켜준다. 이 때 float: left를 삭제해준다.
+
+      ```css
+      aside {
+        /* for fixed side bar */
+        position: fixed;
+        top: 60px;
+        bottom: 0;
+      
+        width: 200px;
+      }
+      section {
+        float: right;
+        margin-left: 200px;
+      }
+      ```
+
+      aside navigation의 style을 정리한다.
+      
+      ```html
+      aside {
+        /* for fixed side bar */
+        position: fixed;
+        top: 60px;
+        bottom: 0;
+      
+        width: 200px;
+        padding-top: 25px;
+        background-color: #333;
+      }
+      /* aside navigation */
+      aside > ul {
+        width: 200px;
+      }
+      aside > ul > li > a {
+        display: block;
+        color: #fff;
+        padding: 10px 0 10px 20px;
+      }
+      aside > ul > li > a.active {
+        background-color: #4CAF50;
+      }
+      aside > ul > li > a:hover:not(.active) {
+        background-color: #555;
+      }
+      aside > h1 {
+        padding: 20px 0 20px 20px;
+        color: #fff;
+      }
+      /* Section */
+      section {
+        float: right;
+        /* aside width */
+        margin-left: 200px;
+      }
+      article {
+        margin: 10px;
+        padding: 25px;
+        background-color: white;
+      }
+      ```
+      
+      h1의 크기가 위치한 영역에 따라 다르게 설정해준다.
+      
+      ```css
+      h1 { font-size: 1.8em; }
+      h1, h2, h3, h4, h5, h6, p {
+        margin: 10px 5px;
+      }
+      ```
+    
+  - ###### 2.40.3 footer
+  
+    - ```html
+      <footer>© Copyright 2016 ungmo2</footer>
+      ```
+  
+    - footer도 고정되어 있어야 하지만 본문을 가려서는 안되므로 fixed가 아닌 absolute 프로퍼티를 사용해준다.
+  
+      ```css
+      footer {
+        /* footer를 aside위에 올리기 위해 사용(부유객체) */
+        position: absolute;
+        height: 60px;
+        width: 100%;
+        padding: 0 25px;
+        line-height: 60px;
+        color: #8a8c8f;
+        border-top: 1px solid #dee5e7;
+        background-color: #f2f2f2;
+      }
+      ```
+  
+- ##### 2.41 반응형 레이아웃
+
+  - 위의 레이아웃 작성 방법에는 화면폭을 좁히면 화면이 망가진다는 문제점이 있다.
+
+  - ###### 2.41.1 Responsive Web Design 개요
+
+    - 화면 크기에 구애받지 않고 화면 해상도에 따라 가로폭이나ㅣ 배치를 변경하여 가독성을 높이는 것이다.
+
+    - *2.41.1.1* *viewport meta tag*
+
+      - viewport란 웹페이지의 가시영역을 의미한다. 이 viewport는 기기마다 차이가 있기 때문에 이를 이용하여 각종 기기 사용자에게 최적화된 웹페이지를 제공할 수 있다.![viewport](https://poiemaweb.com/img/viewportExample.jpg)
+
+      - viewport meta tag는 브라우저의 화면 설정과 관련된 정보를 제공한다.
+
+        | 프로퍼티      | Description                  | 사용 예             |
+        | ------------- | ---------------------------- | ------------------- |
+        | width         | viewport 너비. 기본값: 980px | width=240           |
+        |               |                              | width=device-width  |
+        | height        | viewport 높이                | height=800          |
+        |               |                              | width=device-height |
+        | initial-scale | viewport 초기 배율           | initial-scale=1.0   |
+        | user-scale    | 확대 축소 가능 여부          | user-scale=no       |
+        | maximum-scale | viewport 최대 배율           | maximum-scale=2.0   |
+        | minimum-scale | viewport 최소 배율           | minimum-scale=1.0   |
+
+      - 일반적으로 viewport meta tag는 모바일에서만 적용된다.
+
+      - ```html
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        ```
+
+        가로폭을 디바이스의 가로폭에 맞추고 초기 화면 배율을 100%로 설정한다.
+
+    - *2.41.1.2 @media*
+
+      - 서로 다른 미디어 타입에 따라 각각의 style을 지정하게 한다.
+
+        ```html
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <style>
+            @media screen {
+              * { color: red; }
+            }
+            @media print {
+              * { color: blue; }
+            }
+          </style>
+        </head>
+        <body>
+          <h1>@media practice</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </body>
+        </html>
+        ```
+
+      - @media를 사용하여 미디어 별로 style을 지정하는 것을 Media Query라고 한다.
+
+        ```
+        @media not|only mediatype and (expressions) {
+          CSS-Code;
+        }
+        ```
+
+        ```css
+        @media screen and (min-width: 480px) {
+          body {
+            background-color: lightgreen;
+          }
+        }
+        ```
+
+        | 프로퍼티            | Description                                      |
+        | ------------------- | ------------------------------------------------ |
+        | width               | viewport 너비                                    |
+        | height              | viewport 높이                                    |
+        | device-width        | 디바이스의 물리적 너비                           |
+        | device-height       | 디바이스의 물리적 높이                           |
+        | orientation         | 디바이스 방향(가로 : landscape, 세로 : portrait) |
+        | device-aspect-ratio | 디바이스의 물리적 width/height 비율              |
+        | color               | 디바이스에서 표현 가능한 최대 색상 비트 수       |
+        | monochrome          | 흑백 디바이스의 픽셀 당 비트 수                  |
+        | resolution          | 디바이스 해상도                                  |
+
+        orientation을 제외한 모든 프로퍼티는 min/max 접두사를 사용할 수 있다.
+
+        viewport의 width 프로퍼티를 이용하여 viewport 너비에 따라 반응하는 범위를 지정할 수 있다.
+
+        ```css
+        /*==========  Mobile First Method  ==========*/
+        /* All Device */
+        
+        /* Custom, iPhone Retina : 320px ~ */
+        @media only screen and (min-width : 320px) {
+        
+        }
+        /* Extra Small Devices, Phones : 480px ~ */
+        @media only screen and (min-width : 480px) {
+        
+        }
+        /* Small Devices, Tablets : 768px ~ */
+        @media only screen and (min-width : 768px) {
+        
+        }
+        /* Medium Devices, Desktops : 992px ~ */
+        @media only screen and (min-width : 992px) {
+        
+        }
+        /* Large Devices, Wide Screens : 1200px ~ */
+        @media only screen and (min-width : 1200px) {
+        
+        }
+        
+        /*==========  Non-Mobile First Method  ==========*/
+        /* All Device */
+        
+        /* Large Devices, Wide Screens : ~ 1200px */
+        @media only screen and (max-width : 1200px) {
+        
+        }
+        /* Medium Devices, Desktops : ~ 992px */
+        @media only screen and (max-width : 992px) {
+        
+        }
+        /* Small Devices, Tablets : ~ 768px */
+        @media only screen and (max-width : 768px) {
+        
+        }
+        /* Extra Small Devices, Phones : ~ 480px */
+        @media only screen and (max-width : 480px) {
+        
+        }
+        /* Custom, iPhone Retina : ~ 320px */
+        @media only screen and (max-width : 320px) {
+        
+        }
+        
+        ```
+
+        ![media-query-breakpoints](https://poiemaweb.com/img/media-query-breakpoints.jpg)
+
+        아래는 임의로 해상도를 3단계로 구분한 예시이다.
+
+        ```html
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <style>
+            /* 801px ~ */
+            * { color: black; }
+            /* ~ 800px */
+            @media screen and (max-width: 800px) {
+              * { color: blue; }
+            }
+            /* ~ 480px */
+            @media screen and (max-width: 480px) {
+              * { color: red; }
+            }
+          </style>
+        </head>
+        <body>
+          <h1>@media practice</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </body>
+        </html>
+        ```
+
+      - 다음은 화면의 세로, 가로를 구분하는 예제이다.(스마트폰 해상도 지정 필수)
+
+        ```html
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <style>
+            /* 세로  */
+            * { color: black; }
+            /* 가로 */
+            /* Desktop의 화면은 가로화면(landscape)이므로 아래 rule이 적용된다. */
+            /*
+            @media screen and (orientation: landscape) {
+              { color: blue; }
+            }
+            */
+        
+            /* Landscape */
+            @media screen
+              /* 디바이스가 모바일일때(device-width 0 ~ 768px) */
+              and (max-device-width: 760px)
+              /* 가로 */
+              and (orientation: landscape) {
+              * { color: blue; }
+            }
+          </style>
+        </head>
+        <body>
+          <h1>@media practice: orientation</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </body>
+        </html>
+        ```
+
+  - ###### 2.41.2 Responsive Navigation Bar
+
+    - 
 
 
 #### 3. 값(value/속성값)
