@@ -879,7 +879,7 @@
 
     - 테두리 선의 스타일을 지정한다.
 
-      ```http
+      ```html
       <!DOCTYPE html>
       <html>
         <head>
