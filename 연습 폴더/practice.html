@@ -2,31 +2,30 @@
 <html>
 <head>
   <style>
-    /* p 요소 콘텐츠의 첫글자를 선택 */
-    p::first-letter { font-size: 3em; }
-    /* p 요소 콘텐츠의 첫줄을 선택 */
-    p::first-line   { color: red; }
-
-    /* h1 요소 콘텐츠의 앞 공간에 content 어트리뷰트 값을 삽입한다 */
-    h1::before {
-      content: " HTML!!! ";
-      color: blue;
+    body { margin: 0; }
+    .parent {
+      width: 200px;
+      height: 200px;
+      background: #bcbcbc;
+      border: 1px solid #bcbcbc;
+      margin: 50px 0 0 300px;
+      position: relative;
     }
-    /* h1 요소 콘텐츠의 뒷 공간에 content 어트리뷰트 값을 삽입한다 */
-    h1::after {
-      content: " CSS3!!!";
-      color: red;
-    }
-
-    /* 드래그한 콘텐츠를 선택한다 */
-    ::selection {
-      color: red;
-      background: yellow;
+    .absolute-box {
+      position: absolute;
+      height: 200px; width: 200px;
+      top: 50px; left: 50px;
+      color: #e55c3c;
+      font-weight: bold;
+      text-align: center;
+      background: #2E303D;
+      line-height: 200px;
     }
   </style>
 </head>
 <body>
-  <h1>This is a heading</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo illum sunt distinctio sed, tempore, repellat rerum et ea laborum voluptatum! Quisquam error fugiat debitis maiores officiis, tenetur ullam amet in!</p>
-</body>
+  <div class="parent">
+    <div class="absolute-box">absolute box (in parent)</div>
+  </div>
+  <div class="absolute-box">absolute box (no parent)</div></body>
 </html>

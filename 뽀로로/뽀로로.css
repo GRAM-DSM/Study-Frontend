@@ -1,11 +1,30 @@
+div{
+    display: inline-block;
+}
 .head{
-    position: absolute;
+    position: relative;
+    top: 100px;
+    left: 100px;
     background-color: blue;
-
     width: 300px;
     height: 300px;
     border-radius: 50%;
 }
-.eye{
-    position: relative;
+.eye1{
+    position: absolute;
+    background-color: black;
+    top: 120px;
+    left: 95px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+.eye2{
+    position: absolute;
+    background-color: black;
+    top: 120px;
+    left: 185px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
 }
