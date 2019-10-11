@@ -1,2 +1,2 @@
 # Study-Frontend
-Web Frontend 팀 스터디
+동명이의 study repository
