@@ -1,0 +1,11 @@
+.container{
+	background-color : skyblue;
+	display: flex;
+}
+.container :nth-child(1){
+	display: flex;
+}
+.item{
+	background-color: gold;
+    border: 1px solid grey;
+}
