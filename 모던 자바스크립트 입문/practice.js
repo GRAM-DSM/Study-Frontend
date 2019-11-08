@@ -1,2 +1,2 @@
-var re = /ab+c/;
-console.log(re)
+var c = 'mag'
+console.log(c)
