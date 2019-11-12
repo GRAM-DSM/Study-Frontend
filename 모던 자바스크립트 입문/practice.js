@@ -1,1 +1,1 @@
-setInterval(function() {console.log(new Date());}, 1000);
+console.log(57.3*Math.PI/180)

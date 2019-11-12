@@ -2,15 +2,20 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>체질량지수 계산하기</title>
-    
+    <title>Canvas로 이미지 파일 읽어 들이기</title>
+    <script>
+        window.onload = function() {
+            var canvas = document.getElementById("mycanvas");
+            var ctx = canvas.getContext("2d");
+            var img = new Image();
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0, 660, 335);
+            };
+            img.src = "./cat.jpg";
+        }
+    </script>
 </head>
 <body>
-        <script>
-                var now = new Date();
-                var month = now.getMonth() + 1;
-                var day = now.getDate();
-                document.write("<p>오늘은 " + month + "월 "+ day + "일 입니다. </p>");
-                </script>
+        <canvas id="mycanvas" height="335px" width="660px"></canvas>
 </body>
 </html>
