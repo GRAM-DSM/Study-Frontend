@@ -4,18 +4,28 @@
     <meta charset="UTF-8">
     <title>Canvas로 이미지 파일 읽어 들이기</title>
     <script>
+        function diamond(c, n, x, y, r, color){
+            c.strokeStyle = color;
+            c.beginPath();
+            for(var i = 0; i < n; i++) {
+                var t = i * 2 * Math.PI / n;
+                for(var j = i + 1; j < n; j++){
+                    var s = j * 2 * Math.PI / n;
+                    c.moveTo(x + r * Math.cos(t), y + r * Math.sin(t));
+                    c.lineTo(x + r * Math.cos(s), y + r * Math.sin(s));
+                }
+            }
+            c.lineJoin = "round";
+            c.stroke();
+        }
         window.onload = function() {
             var canvas = document.getElementById("mycanvas");
             var ctx = canvas.getContext("2d");
-            var img = new Image();
-            img.onload = function() {
-                ctx.drawImage(img, 0, 0, 660, 335);
-            };
-            img.src = "./cat.jpg";
+            diamond(ctx, 18, 810, 170, 150, 'darkblue');
         }
     </script>
 </head>
 <body>
-        <canvas id="mycanvas" height="335px" width="660px"></canvas>
+        <canvas id="mycanvas" height="400px" width="1000px"></canvas>
 </body>
 </html>

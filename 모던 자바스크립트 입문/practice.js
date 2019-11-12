@@ -1,1 +1,2 @@
-console.log(57.3*Math.PI/180)
+var x = new Function("x", "var sum = x++; console.log(sum); return x * x");
+console.log(x(5));
